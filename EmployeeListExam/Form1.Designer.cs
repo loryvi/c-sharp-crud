@@ -64,6 +64,7 @@
             deleteButton = new Button();
             searchTextBox = new TextBox();
             searchLabel = new Label();
+            button1 = new Button();
             Column1 = new DataGridViewTextBoxColumn();
             EmployeeID = new DataGridViewTextBoxColumn();
             FirstName = new DataGridViewTextBoxColumn();
@@ -303,6 +304,7 @@
             // 
             employeeRecordTable.AllowUserToAddRows = false;
             employeeRecordTable.AllowUserToDeleteRows = false;
+            employeeRecordTable.BackgroundColor = SystemColors.ControlLightLight;
             employeeRecordTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             employeeRecordTable.Columns.AddRange(new DataGridViewColumn[] { Column1, EmployeeID, FirstName, MiddleName, LastName, birthdate, addressBrgy, addressUnitNum, City, employeePosition, employeeDepartment, employeeCompany, Column11, Column12 });
             employeeRecordTable.Location = new Point(9, 234);
@@ -315,32 +317,39 @@
             // 
             // saveButton
             // 
+            saveButton.BackColor = SystemColors.GradientActiveCaption;
+            saveButton.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             saveButton.Location = new Point(437, 176);
             saveButton.Name = "saveButton";
             saveButton.Size = new Size(113, 42);
             saveButton.TabIndex = 30;
             saveButton.Text = "Save";
-            saveButton.UseVisualStyleBackColor = true;
+            saveButton.UseVisualStyleBackColor = false;
             saveButton.Click += saveButton_Click;
             // 
             // editButton
             // 
+            editButton.BackColor = Color.Tomato;
+            editButton.Font = new Font("Century Gothic", 11.25F);
             editButton.Location = new Point(556, 176);
             editButton.Name = "editButton";
             editButton.Size = new Size(113, 42);
             editButton.TabIndex = 31;
-            editButton.Text = "Edit";
-            editButton.UseVisualStyleBackColor = true;
+            editButton.Text = "Update";
+            editButton.UseVisualStyleBackColor = false;
             editButton.Click += editButton_Click;
             // 
             // deleteButton
             // 
+            deleteButton.BackColor = Color.Maroon;
+            deleteButton.Font = new Font("Century Gothic", 11.25F);
+            deleteButton.ForeColor = SystemColors.Window;
             deleteButton.Location = new Point(675, 176);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(113, 42);
             deleteButton.TabIndex = 32;
             deleteButton.Text = "Delete";
-            deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.UseVisualStyleBackColor = false;
             deleteButton.Click += deleteButton_Click;
             // 
             // searchTextBox
@@ -360,6 +369,16 @@
             searchLabel.TabIndex = 34;
             searchLabel.Text = "Search";
             // 
+            // button1
+            // 
+            button1.Location = new Point(369, 176);
+            button1.Name = "button1";
+            button1.Size = new Size(62, 42);
+            button1.TabIndex = 35;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Column1
             // 
             Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -372,6 +391,7 @@
             // 
             EmployeeID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             EmployeeID.HeaderText = "Employee No.";
+            EmployeeID.MaxInputLength = 11;
             EmployeeID.Name = "EmployeeID";
             EmployeeID.ReadOnly = true;
             EmployeeID.Width = 106;
@@ -380,6 +400,7 @@
             // 
             FirstName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             FirstName.HeaderText = "First Name";
+            FirstName.MaxInputLength = 50;
             FirstName.Name = "FirstName";
             FirstName.ReadOnly = true;
             FirstName.Width = 89;
@@ -388,6 +409,7 @@
             // 
             MiddleName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             MiddleName.HeaderText = "Middle Name";
+            MiddleName.MaxInputLength = 50;
             MiddleName.Name = "MiddleName";
             MiddleName.ReadOnly = true;
             MiddleName.Width = 104;
@@ -396,6 +418,7 @@
             // 
             LastName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             LastName.HeaderText = "Last Name";
+            LastName.MaxInputLength = 50;
             LastName.Name = "LastName";
             LastName.ReadOnly = true;
             LastName.Width = 88;
@@ -403,7 +426,7 @@
             // birthdate
             // 
             birthdate.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Format = "yyyy-MM-dd";
+            dataGridViewCellStyle1.Format = "d";
             dataGridViewCellStyle1.NullValue = null;
             birthdate.DefaultCellStyle = dataGridViewCellStyle1;
             birthdate.HeaderText = "Birthdate";
@@ -414,18 +437,21 @@
             // addressBrgy
             // 
             addressBrgy.HeaderText = "Brgy";
+            addressBrgy.MaxInputLength = 50;
             addressBrgy.Name = "addressBrgy";
             addressBrgy.ReadOnly = true;
             // 
             // addressUnitNum
             // 
             addressUnitNum.HeaderText = "Unit #";
+            addressUnitNum.MaxInputLength = 50;
             addressUnitNum.Name = "addressUnitNum";
             addressUnitNum.ReadOnly = true;
             // 
             // City
             // 
             City.HeaderText = "City";
+            City.MaxInputLength = 50;
             City.Name = "City";
             City.ReadOnly = true;
             // 
@@ -433,6 +459,7 @@
             // 
             employeePosition.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             employeePosition.HeaderText = "Position";
+            employeePosition.MaxInputLength = 50;
             employeePosition.Name = "employeePosition";
             employeePosition.ReadOnly = true;
             employeePosition.Width = 75;
@@ -441,6 +468,7 @@
             // 
             employeeDepartment.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             employeeDepartment.HeaderText = "Department";
+            employeeDepartment.MaxInputLength = 50;
             employeeDepartment.Name = "employeeDepartment";
             employeeDepartment.ReadOnly = true;
             employeeDepartment.Width = 95;
@@ -449,6 +477,7 @@
             // 
             employeeCompany.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             employeeCompany.HeaderText = "Company Name";
+            employeeCompany.MaxInputLength = 50;
             employeeCompany.Name = "employeeCompany";
             employeeCompany.ReadOnly = true;
             employeeCompany.Width = 109;
@@ -457,7 +486,7 @@
             // 
             Column11.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle2.Format = "yyyy-MM-dd";
+            dataGridViewCellStyle2.Format = "d";
             dataGridViewCellStyle2.NullValue = null;
             Column11.DefaultCellStyle = dataGridViewCellStyle2;
             Column11.HeaderText = "Date Joined";
@@ -468,7 +497,7 @@
             // Column12
             // 
             Column12.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle3.Format = "yyyy-MM-dd";
+            dataGridViewCellStyle3.Format = "d";
             dataGridViewCellStyle3.NullValue = null;
             Column12.DefaultCellStyle = dataGridViewCellStyle3;
             Column12.HeaderText = "Date Left";
@@ -481,6 +510,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(796, 495);
+            Controls.Add(button1);
             Controls.Add(searchLabel);
             Controls.Add(searchTextBox);
             Controls.Add(deleteButton);
@@ -557,6 +587,7 @@
         private Button deleteButton;
         private TextBox searchTextBox;
         private Label searchLabel;
+        private Button button1;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn EmployeeID;
         private DataGridViewTextBoxColumn FirstName;
