@@ -3,9 +3,8 @@
 ## Table of contents
  
 - [Overview](#overview)
-  -[Data](#data) 
-  -[Nested Folder](#nestedfolder) 
-  -[Classes](#classes) 
+ -[Data](#data) 
+ -[Nested Folder](#nestedfolder) 
   - [Screenshot](#screenshot)
   - [CREATE](#links)
   - [READ](#READ)
@@ -25,19 +24,19 @@ A CRUD made of  of a C# .Net Forms.
 ** Data with * are mandatory. Numbers inside () are Maximum Length accepted. 
 
 -Data Variables 
-	- EmployeeID* (11)
-	- FirstName* (50)
-	- MiddleName (50)
-	- LastName* (50)
-	- birthday 
-	-addressUnitNum* (50)
-	- addressBrgy* (50)
-	- addressCity* (50)
-	- employeePosition* (50)
-	- employeeDepartment* (50)
-	- employeeCompany* (50)
-	- employeeDateJoined 
-	- EmployeeDateLeft
+ - EmployeeID* (11)
+ - FirstName* (50)
+ - MiddleName (50)
+ - LastName* (50)
+ - birthday 
+ - addressUnitNum* (50)
+ - addressBrgy* (50)
+ - addressCity* (50)
+ - employeePosition* (50)
+ - employeeDepartment* (50)
+ - employeeCompany* (50)
+ - employeeDateJoined 
+ - employeeDateLeft
 
 ### Nested Folder
 -EmployeeListExam
@@ -63,24 +62,7 @@ A screenshot of the connected database from MySQL
 ### Create
 
 - add input data to database
-```  private void saveButton_Click(object sender, EventArgs e)
-        {
-
-                if ((EmployeeIDText.Text == string.Empty) ||
-                 (FirstNameText.Text == string.Empty) ||
-                 (LastNameText.Text == string.Empty) ||
-                 (addressUnitNumText.Text == string.Empty) ||
-                 (addressBrgyText.Text == string.Empty) ||
-                 (addressCityText.Text == string.Empty) ||
-                 (employeePositionText.Text == string.Empty) ||
-                 (employeeDepartmentText.Text == string.Empty))
-                {
-                    MessageBox.Show("Warning: Fill Required Box!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                else
-                {
-                    db_connect.Open();
+```   db_connect.Open();
                     cmd = new MySqlCommand(query.insertQuery(), db_connect);
                     cmd.Parameters.Clear();
 
