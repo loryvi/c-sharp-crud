@@ -3,8 +3,8 @@
 ## Table of contents
  
 - [Overview](#overview)
- -[Data](#data) 
- -[Nested Folder](#nestedfolder) 
+  -[Data](#data) 
+  -[Nested Folder](#nested-folder) 
   - [Screenshot](#screenshot)
   - [CREATE](#links)
   - [READ](#READ)
@@ -12,7 +12,6 @@
   - [DELETE](#delete)
   - [Data Validation](#datavalidation)
 - [My process](#my-process)
-  - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
@@ -43,12 +42,12 @@ A CRUD made of  of a C# .Net Forms.
 -EmployeeListExam
 -README.md
 -Images
- -Form1.cs
- -Form1.Designer
- -Form1.resx
- -isDataValid.csd
- -dbconnection.cs
- -queries.cs
+  -Form1.cs
+  -Form1.Designer
+  -Form1.resx
+  -isDataValid.csd
+  -dbconnection.cs
+  -queries.cs
 
 
 ### Screenshot
@@ -137,7 +136,7 @@ A screenshot of the connected database from MySQL
 
             cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text); //EmployeeIDText - input
 
-            i = cmd.ExecuteNonQuery(); // execute mysqlcommand. checks if 'Column count doesn't match value count at row 1'
+            i = cmd.ExecuteNonQuery(); // execute mysqlcommand. checks if 'Column count match value count at row 1'
 
             if (i > 0)
             {
