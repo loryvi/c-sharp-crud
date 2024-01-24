@@ -44,8 +44,6 @@ namespace EmployeeListExam
 
             dataRead.Close();
             db_connect.Close();
-
-
         }
 
         public void clearForm()
@@ -171,7 +169,7 @@ namespace EmployeeListExam
 
             cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text); //EmployeeIDText - input
 
-            i = cmd.ExecuteNonQuery(); // execute mysqlcommand. //MySql.Data.MySqlClient.MySqlException: 'Column count doesn't match value count at row 1'
+            i = cmd.ExecuteNonQuery(); // execute mysqlcommand. checks if 'Column count match value count at row 1'
 
             if (i > 0)
             {

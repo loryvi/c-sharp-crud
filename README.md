@@ -10,6 +10,7 @@
   - [READ](#READ)
   - [UPDATE](#update)
   - [DELETE](#delete)
+  - [Data Validation](#datavalidation)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -42,12 +43,12 @@ A CRUD made of  of a C# .Net Forms.
 -EmployeeListExam
 -README.md
 -Images
-	-Form1.cs
-	-Form1.Designer
-	-Form1.resx
-	-isDataValid.csd
-	-dbconnection.cs
-	-queries.cs
+ -Form1.cs
+ -Form1.Designer
+ -Form1.resx
+ -isDataValid.csd
+ -dbconnection.cs
+ -queries.cs
 
 
 ### Screenshot
@@ -81,13 +82,76 @@ A screenshot of the connected database from MySQL
                     db_connect.Close();
                     LoadRecord();
                     clearForm();
-                }
+```
 
 
+### Read
+
+```
+ //Loads the data from database mySql.
+        private void LoadRecord()
+        {
+            db_connect.Open();
+            employeeRecordTable.Rows.Clear();
+            cmd = new MySqlCommand(query.selectQuery(), db_connect);
+
+            dataRead = cmd.ExecuteReader();
+            DATAREAD();
+
+            dataRead.Close();
+            db_connect.Close();
         }
 ```
-- [validation (if input string is empty, maxlength, and is EmployeeID already exist](/queries.cs)
 
+### Update 
+
+** Restriction: EmployeeID cannot change.
+
+```//cannot edit EmployeeID
+                db_connect.Open();
+                cmd = new MySqlCommand(query.updateQuery(), db_connect);
+                SAVETODATABASE();
+
+                if (i > 0)
+                {
+                    MessageBox.Show("Record Update Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Record Update Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                db_connect.Close();
+                LoadRecord();
+                clearForm();
+```
+
+### Delete 
+
+```
+            db_connect.Open();
+            cmd = new MySqlCommand(query.deleteQuery(), db_connect);
+
+
+            cmd.Parameters.Clear();
+
+            cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text); //EmployeeIDText - input
+
+            i = cmd.ExecuteNonQuery(); // execute mysqlcommand. checks if 'Column count doesn't match value count at row 1'
+
+            if (i > 0)
+            {
+                MessageBox.Show("Record Delete Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Record Delete Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            db_connect.Close();
+            LoadRecord();
+            clearForm();
+```
 ### What I learned
 
 - Classes
