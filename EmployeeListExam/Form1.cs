@@ -1,11 +1,5 @@
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using MySql.Data;
+using System;
 using MySql.Data.MySqlClient;
-using Mysqlx.Crud;
 
 
 namespace EmployeeListExam
@@ -34,6 +28,7 @@ namespace EmployeeListExam
             LoadRecord();
             editButton.Enabled = false;
             deleteButton.Enabled = false;
+
         }
 
 
@@ -78,43 +73,41 @@ namespace EmployeeListExam
         //save and save the input data
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if ((EmployeeIDText.Text == string.Empty) ||
-               (FirstNameText.Text == string.Empty) ||
-               (LastNameText.Text == string.Empty) ||
-               (addressUnitNumText.Text == string.Empty) ||
-               (addressBrgyText.Text == string.Empty) ||
-               (addressCityText.Text == string.Empty) ||
-               (employeePositionText.Text == string.Empty) ||
-               (employeeDepartmentText.Text == string.Empty) ||
-               (employeeCompanyText.Text == string.Empty))
-            {
-                MessageBox.Show("Warning: Fill Required Box!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
-            else
-            {
-
-                db_connect.Open();
-                cmd = new MySqlCommand(query.insertQuery(), db_connect);
-                cmd.Parameters.Clear();
-
-                SAVETODATABASE();
-
-                if (i > 0)
+                if ((EmployeeIDText.Text == string.Empty) ||
+                 (FirstNameText.Text == string.Empty) ||
+                 (LastNameText.Text == string.Empty) ||
+                 (addressUnitNumText.Text == string.Empty) ||
+                 (addressBrgyText.Text == string.Empty) ||
+                 (addressCityText.Text == string.Empty) ||
+                 (employeePositionText.Text == string.Empty) ||
+                 (employeeDepartmentText.Text == string.Empty))
                 {
-
-                    MessageBox.Show("Record Save Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Warning: Fill Required Box!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("Record Save Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+                    db_connect.Open();
+                    cmd = new MySqlCommand(query.insertQuery(), db_connect);
+                    cmd.Parameters.Clear();
 
-                db_connect.Close();
-                LoadRecord();
-                clearForm();
-            }
+                    SAVETODATABASE();
+
+                    if (i > 0)
+                    {
+
+                        MessageBox.Show("Record Save Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Record Save Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
+                    db_connect.Close();
+                    LoadRecord();
+                    clearForm();
+                }
 
 
         }
@@ -127,6 +120,7 @@ namespace EmployeeListExam
             editButton.Enabled = true;
 
             cmd.Parameters.Clear();
+           
 
             if ((EmployeeIDText.Text == string.Empty) ||
                (FirstNameText.Text == string.Empty) ||
@@ -137,15 +131,15 @@ namespace EmployeeListExam
                (employeePositionText.Text == string.Empty) ||
                (employeeDepartmentText.Text == string.Empty) ||
                (employeeCompanyText.Text == string.Empty))
-            {
+            { 
                 MessageBox.Show("Warning: Fill Required Box!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+              
+              return;
             }
             else
             {
+               //cannot edit EmployeeID
                 db_connect.Open();
-
-
                 cmd = new MySqlCommand(query.updateQuery(), db_connect);
                 SAVETODATABASE();
 
@@ -271,7 +265,8 @@ namespace EmployeeListExam
             string birthday = birthdayPicker.Value.ToString("yyyy-MM-dd");  //saves birthdayPicker string to birthday in MYSQl;
             string date_joined = employeeDateJoined.Value.ToString("yyyy-MM-dd");
             string date_left = employeeDateLeft.Value.ToString("yyyy-MM-dd");
-
+            
+            cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text);
             cmd.Parameters.AddWithValue("@FirstName", FirstNameText.Text);
             cmd.Parameters.AddWithValue("@MiddleName", MiddleNameText.Text);
             cmd.Parameters.AddWithValue("@LastName", LastNameText.Text);
@@ -284,7 +279,7 @@ namespace EmployeeListExam
             cmd.Parameters.AddWithValue("@employeeCompany", employeeCompanyText.Text);
             cmd.Parameters.AddWithValue("@employeeDateJoined", date_joined);
             cmd.Parameters.AddWithValue("@employeeDateLeft", date_left);
-            cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text); //EmployeeIDText - input
+             //EmployeeIDText - input
 
             i = cmd.ExecuteNonQuery();
         }

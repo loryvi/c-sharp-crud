@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             EmployeeID_label = new Label();
             EmployeeIDText = new TextBox();
             FirstNameText = new TextBox();
@@ -79,13 +79,23 @@
             searchTextBox = new TextBox();
             searchLabel = new Label();
             clearButton = new Button();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            label14 = new Label();
+            label15 = new Label();
             ((System.ComponentModel.ISupportInitialize)employeeRecordTable).BeginInit();
             SuspendLayout();
             // 
             // EmployeeID_label
             // 
             EmployeeID_label.AutoSize = true;
-            EmployeeID_label.Location = new Point(9, 12);
+            EmployeeID_label.Location = new Point(22, 25);
             EmployeeID_label.Name = "EmployeeID_label";
             EmployeeID_label.Size = new Size(79, 15);
             EmployeeID_label.TabIndex = 0;
@@ -93,15 +103,14 @@
             // 
             // EmployeeIDText
             // 
-            EmployeeIDText.Location = new Point(9, 32);
+            EmployeeIDText.Location = new Point(9, 42);
             EmployeeIDText.Name = "EmployeeIDText";
             EmployeeIDText.Size = new Size(117, 23);
             EmployeeIDText.TabIndex = 1;
-           
             // 
             // FirstNameText
             // 
-            FirstNameText.Location = new Point(133, 32);
+            FirstNameText.Location = new Point(133, 42);
             FirstNameText.Name = "FirstNameText";
             FirstNameText.Size = new Size(218, 23);
             FirstNameText.TabIndex = 3;
@@ -109,7 +118,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(132, 12);
+            label1.Location = new Point(141, 24);
             label1.Name = "label1";
             label1.Size = new Size(70, 15);
             label1.TabIndex = 2;
@@ -117,7 +126,7 @@
             // 
             // MiddleNameText
             // 
-            MiddleNameText.Location = new Point(357, 32);
+            MiddleNameText.Location = new Point(357, 42);
             MiddleNameText.Name = "MiddleNameText";
             MiddleNameText.Size = new Size(200, 23);
             MiddleNameText.TabIndex = 5;
@@ -125,7 +134,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(357, 14);
+            label2.Location = new Point(361, 26);
             label2.Name = "label2";
             label2.Size = new Size(85, 15);
             label2.TabIndex = 4;
@@ -133,7 +142,7 @@
             // 
             // LastNameText
             // 
-            LastNameText.Location = new Point(563, 32);
+            LastNameText.Location = new Point(563, 42);
             LastNameText.Name = "LastNameText";
             LastNameText.Size = new Size(225, 23);
             LastNameText.TabIndex = 7;
@@ -141,7 +150,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(563, 14);
+            label3.Location = new Point(573, 26);
             label3.Name = "label3";
             label3.Size = new Size(66, 15);
             label3.TabIndex = 6;
@@ -183,7 +192,7 @@
             // unitNumLabel
             // 
             unitNumLabel.AutoSize = true;
-            unitNumLabel.Location = new Point(271, 68);
+            unitNumLabel.Location = new Point(281, 68);
             unitNumLabel.Name = "unitNumLabel";
             unitNumLabel.Size = new Size(45, 15);
             unitNumLabel.TabIndex = 12;
@@ -192,7 +201,7 @@
             // addressCityLabel
             // 
             addressCityLabel.AutoSize = true;
-            addressCityLabel.Location = new Point(607, 68);
+            addressCityLabel.Location = new Point(621, 68);
             addressCityLabel.Name = "addressCityLabel";
             addressCityLabel.Size = new Size(31, 15);
             addressCityLabel.TabIndex = 14;
@@ -201,7 +210,7 @@
             // addressBrgyLabel
             // 
             addressBrgyLabel.AutoSize = true;
-            addressBrgyLabel.Location = new Point(419, 68);
+            addressBrgyLabel.Location = new Point(430, 68);
             addressBrgyLabel.Name = "addressBrgyLabel";
             addressBrgyLabel.Size = new Size(37, 15);
             addressBrgyLabel.TabIndex = 16;
@@ -240,7 +249,7 @@
             // positionLabel
             // 
             positionLabel.AutoSize = true;
-            positionLabel.Location = new Point(279, 120);
+            positionLabel.Location = new Point(292, 120);
             positionLabel.Name = "positionLabel";
             positionLabel.Size = new Size(53, 15);
             positionLabel.TabIndex = 23;
@@ -256,7 +265,7 @@
             // departmentLabel
             // 
             departmentLabel.AutoSize = true;
-            departmentLabel.Location = new Point(132, 118);
+            departmentLabel.Location = new Point(141, 119);
             departmentLabel.Name = "departmentLabel";
             departmentLabel.Size = new Size(73, 15);
             departmentLabel.TabIndex = 21;
@@ -272,7 +281,7 @@
             // companyLabel
             // 
             companyLabel.AutoSize = true;
-            companyLabel.Location = new Point(9, 118);
+            companyLabel.Location = new Point(21, 119);
             companyLabel.Name = "companyLabel";
             companyLabel.Size = new Size(59, 15);
             companyLabel.TabIndex = 19;
@@ -363,9 +372,9 @@
             // birthdate
             // 
             birthdate.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            birthdate.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            birthdate.DefaultCellStyle = dataGridViewCellStyle4;
             birthdate.HeaderText = "Birthdate";
             birthdate.Name = "birthdate";
             birthdate.ReadOnly = true;
@@ -422,10 +431,10 @@
             // Column11
             // 
             Column11.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            Column11.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle5.Format = "d";
+            dataGridViewCellStyle5.NullValue = null;
+            Column11.DefaultCellStyle = dataGridViewCellStyle5;
             Column11.HeaderText = "Date Joined";
             Column11.Name = "Column11";
             Column11.ReadOnly = true;
@@ -434,9 +443,9 @@
             // Column12
             // 
             Column12.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            Column12.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Format = "d";
+            dataGridViewCellStyle6.NullValue = null;
+            Column12.DefaultCellStyle = dataGridViewCellStyle6;
             Column12.HeaderText = "Date Left";
             Column12.Name = "Column12";
             Column12.ReadOnly = true;
@@ -507,11 +516,131 @@
             clearButton.UseVisualStyleBackColor = true;
             clearButton.Click += clearButton_Click;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Red;
+            label6.Location = new Point(10, 5);
+            label6.Name = "label6";
+            label6.Size = new Size(69, 15);
+            label6.TabIndex = 36;
+            label6.Text = "* Required ";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Anton", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Red;
+            label7.Location = new Point(10, 24);
+            label7.Name = "label7";
+            label7.Size = new Size(13, 18);
+            label7.TabIndex = 37;
+            label7.Text = "*";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Anton", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.Red;
+            label8.Location = new Point(132, 24);
+            label8.Name = "label8";
+            label8.Size = new Size(13, 18);
+            label8.TabIndex = 38;
+            label8.Text = "*";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Anton", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.Red;
+            label9.Location = new Point(271, 68);
+            label9.Name = "label9";
+            label9.Size = new Size(13, 18);
+            label9.TabIndex = 39;
+            label9.Text = "*";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Anton", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label10.ForeColor = Color.Red;
+            label10.Location = new Point(563, 25);
+            label10.Name = "label10";
+            label10.Size = new Size(13, 18);
+            label10.TabIndex = 40;
+            label10.Text = "*";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Anton", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.ForeColor = Color.Red;
+            label11.Location = new Point(419, 68);
+            label11.Name = "label11";
+            label11.Size = new Size(13, 18);
+            label11.TabIndex = 41;
+            label11.Text = "*";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Anton", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.ForeColor = Color.Red;
+            label12.Location = new Point(611, 68);
+            label12.Name = "label12";
+            label12.Size = new Size(13, 18);
+            label12.TabIndex = 42;
+            label12.Text = "*";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Anton", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.ForeColor = Color.Red;
+            label13.Location = new Point(10, 120);
+            label13.Name = "label13";
+            label13.Size = new Size(13, 18);
+            label13.TabIndex = 43;
+            label13.Text = "*";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Anton", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label14.ForeColor = Color.Red;
+            label14.Location = new Point(132, 120);
+            label14.Name = "label14";
+            label14.Size = new Size(13, 18);
+            label14.TabIndex = 44;
+            label14.Text = "*";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Anton", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label15.ForeColor = Color.Red;
+            label15.Location = new Point(281, 120);
+            label15.Name = "label15";
+            label15.Size = new Size(13, 18);
+            label15.TabIndex = 45;
+            label15.Text = "*";
+            // 
             // EmployeeList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(796, 495);
+            Controls.Add(label15);
+            Controls.Add(label14);
+            Controls.Add(label13);
+            Controls.Add(label12);
+            Controls.Add(label11);
+            Controls.Add(label10);
+            Controls.Add(label9);
+            Controls.Add(label8);
+            Controls.Add(label7);
+            Controls.Add(label6);
             Controls.Add(clearButton);
             Controls.Add(searchLabel);
             Controls.Add(searchTextBox);
@@ -604,5 +733,15 @@
         private DataGridViewTextBoxColumn employeeCompany;
         private DataGridViewTextBoxColumn Column11;
         private DataGridViewTextBoxColumn Column12;
+        private Label label6;
+        private Label label7;
+        private Label label8;
+        private Label label9;
+        private Label label10;
+        private Label label11;
+        private Label label12;
+        private Label label13;
+        private Label label14;
+        private Label label15;
     }
 }

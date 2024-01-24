@@ -21,12 +21,12 @@ namespace EmployeeListExam
         }
 
         public string updateQuery()
-        {
+        { //cannot change employeeID
             string update = "UPDATE `db_curd` SET `FirstName`=@FirstName,`MiddleName`=@MiddleName,`LastName`=@LastName,`birthday`=@birthday," +
-                "`addressUnitNum`=@addressUnitNum,`addressBrgy`=@addressBrgy,`addressCity`=@addressCity," +
-                "`employeePosition`=@employeePosition,`employeeDepartment`=@employeeDepartment,`employeeCompany`=@employeeCompany," +
-                "`employeeDateJoined`=@employeeDateJoined,`employeeDateLeft`=@employeeDateLeft " +
-                "WHERE `EmployeeID`=@EmployeeID";
+                                                "`addressUnitNum`=@addressUnitNum,`addressBrgy`=@addressBrgy,`addressCity`=@addressCity," +
+                                                "`employeePosition`=@employeePosition,`employeeDepartment`=@employeeDepartment,`employeeCompany`=@employeeCompany," +
+                                                "`employeeDateJoined`=@employeeDateJoined,`employeeDateLeft`=@employeeDateLeft " +
+                                                "WHERE `EmployeeID`=@EmployeeID";
             return update;
         }
 
@@ -39,7 +39,7 @@ namespace EmployeeListExam
         public string searchQuery(string searchtext)
         {
             string search = "SELECT `EmployeeID`, `FirstName`, `MiddleName`, `LastName`, `birthday`, `addressUnitNum`, `addressBrgy`, `addressCity`, `employeePosition`, `employeeDepartment`, `employeeCompany`, `employeeDateJoined`, `employeeDateLeft` FROM `db_curd`" +
-                 "WHERE employeeID like '%" + searchtext + "%'"+
+                 "WHERE EmployeeID like '%" + searchtext + "%'"+
                 "or FirstName like '%" + searchtext + "%'" +
                 "or MiddleName like '%" + searchtext + "%'" +
                 "or LastName like '%" + searchtext + "%'" +
@@ -54,5 +54,7 @@ namespace EmployeeListExam
                  "or employeeDateLeft like '%" + searchtext + "%'";
             return search;
         }
+
+        
     }
 }
