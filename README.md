@@ -3,8 +3,8 @@
 ## Table of contents
  
 - [Overview](#overview)
-  -[Data](#data) 
-  -[Nested Folder](#nested-folder) 
+  - [Data](#data) 
+  - [Nested Folder](#nested-folder) 
   - [Screenshot](#screenshot)
   - [CREATE](#links)
   - [READ](#READ)
@@ -45,9 +45,9 @@ A CRUD made of  of a C# .Net Forms.
 - Form1.cs
 - Form1.Designer
 - Form1.resx
- - isDataValid.cs
- - dbconnection.cs
- - queries.cs
+  - isDataValid.cs
+  - dbconnection.cs
+  - queries.cs
 
 
 ### Screenshot
