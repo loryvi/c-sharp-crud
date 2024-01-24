@@ -59,12 +59,6 @@
             employeeDateLeft = new DateTimePicker();
             label5 = new Label();
             employeeRecordTable = new DataGridView();
-            saveButton = new Button();
-            editButton = new Button();
-            deleteButton = new Button();
-            searchTextBox = new TextBox();
-            searchLabel = new Label();
-            button1 = new Button();
             Column1 = new DataGridViewTextBoxColumn();
             EmployeeID = new DataGridViewTextBoxColumn();
             FirstName = new DataGridViewTextBoxColumn();
@@ -79,6 +73,12 @@
             employeeCompany = new DataGridViewTextBoxColumn();
             Column11 = new DataGridViewTextBoxColumn();
             Column12 = new DataGridViewTextBoxColumn();
+            saveButton = new Button();
+            editButton = new Button();
+            deleteButton = new Button();
+            searchTextBox = new TextBox();
+            searchLabel = new Label();
+            clearButton = new Button();
             ((System.ComponentModel.ISupportInitialize)employeeRecordTable).BeginInit();
             SuspendLayout();
             // 
@@ -97,6 +97,7 @@
             EmployeeIDText.Name = "EmployeeIDText";
             EmployeeIDText.Size = new Size(117, 23);
             EmployeeIDText.TabIndex = 1;
+           
             // 
             // FirstNameText
             // 
@@ -315,70 +316,6 @@
             employeeRecordTable.TabIndex = 29;
             employeeRecordTable.CellClick += employeeRecordTable_CellClick;
             // 
-            // saveButton
-            // 
-            saveButton.BackColor = SystemColors.GradientActiveCaption;
-            saveButton.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            saveButton.Location = new Point(437, 176);
-            saveButton.Name = "saveButton";
-            saveButton.Size = new Size(113, 42);
-            saveButton.TabIndex = 30;
-            saveButton.Text = "Save";
-            saveButton.UseVisualStyleBackColor = false;
-            saveButton.Click += saveButton_Click;
-            // 
-            // editButton
-            // 
-            editButton.BackColor = Color.Tomato;
-            editButton.Font = new Font("Century Gothic", 11.25F);
-            editButton.Location = new Point(556, 176);
-            editButton.Name = "editButton";
-            editButton.Size = new Size(113, 42);
-            editButton.TabIndex = 31;
-            editButton.Text = "Update";
-            editButton.UseVisualStyleBackColor = false;
-            editButton.Click += editButton_Click;
-            // 
-            // deleteButton
-            // 
-            deleteButton.BackColor = Color.Maroon;
-            deleteButton.Font = new Font("Century Gothic", 11.25F);
-            deleteButton.ForeColor = SystemColors.Window;
-            deleteButton.Location = new Point(675, 176);
-            deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(113, 42);
-            deleteButton.TabIndex = 32;
-            deleteButton.Text = "Delete";
-            deleteButton.UseVisualStyleBackColor = false;
-            deleteButton.Click += deleteButton_Click;
-            // 
-            // searchTextBox
-            // 
-            searchTextBox.Location = new Point(65, 195);
-            searchTextBox.Name = "searchTextBox";
-            searchTextBox.Size = new Size(220, 23);
-            searchTextBox.TabIndex = 33;
-            searchTextBox.TextChanged += searchTextBox_TextChanged;
-            // 
-            // searchLabel
-            // 
-            searchLabel.AutoSize = true;
-            searchLabel.Location = new Point(17, 203);
-            searchLabel.Name = "searchLabel";
-            searchLabel.Size = new Size(42, 15);
-            searchLabel.TabIndex = 34;
-            searchLabel.Text = "Search";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(369, 176);
-            button1.Name = "button1";
-            button1.Size = new Size(62, 42);
-            button1.TabIndex = 35;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // Column1
             // 
             Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -394,7 +331,7 @@
             EmployeeID.MaxInputLength = 11;
             EmployeeID.Name = "EmployeeID";
             EmployeeID.ReadOnly = true;
-            EmployeeID.Width = 106;
+            EmployeeID.Width = 97;
             // 
             // FirstName
             // 
@@ -403,7 +340,7 @@
             FirstName.MaxInputLength = 50;
             FirstName.Name = "FirstName";
             FirstName.ReadOnly = true;
-            FirstName.Width = 89;
+            FirstName.Width = 82;
             // 
             // MiddleName
             // 
@@ -412,7 +349,7 @@
             MiddleName.MaxInputLength = 50;
             MiddleName.Name = "MiddleName";
             MiddleName.ReadOnly = true;
-            MiddleName.Width = 104;
+            MiddleName.Width = 96;
             // 
             // LastName
             // 
@@ -421,7 +358,7 @@
             LastName.MaxInputLength = 50;
             LastName.Name = "LastName";
             LastName.ReadOnly = true;
-            LastName.Width = 88;
+            LastName.Width = 81;
             // 
             // birthdate
             // 
@@ -505,12 +442,77 @@
             Column12.ReadOnly = true;
             Column12.Width = 73;
             // 
+            // saveButton
+            // 
+            saveButton.BackColor = Color.DeepSkyBlue;
+            saveButton.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            saveButton.Location = new Point(437, 176);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(113, 42);
+            saveButton.TabIndex = 30;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = false;
+            saveButton.Click += saveButton_Click;
+            // 
+            // editButton
+            // 
+            editButton.BackColor = Color.DarkOrange;
+            editButton.Font = new Font("Century Gothic", 11.25F);
+            editButton.Location = new Point(556, 176);
+            editButton.Name = "editButton";
+            editButton.Size = new Size(113, 42);
+            editButton.TabIndex = 31;
+            editButton.Text = "Update";
+            editButton.UseVisualStyleBackColor = false;
+            editButton.Click += editButton_Click;
+            // 
+            // deleteButton
+            // 
+            deleteButton.BackColor = Color.Red;
+            deleteButton.Font = new Font("Century Gothic", 11.25F);
+            deleteButton.ForeColor = SystemColors.Window;
+            deleteButton.Location = new Point(675, 176);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(113, 42);
+            deleteButton.TabIndex = 32;
+            deleteButton.Text = "Delete";
+            deleteButton.UseVisualStyleBackColor = false;
+            deleteButton.Click += deleteButton_Click;
+            // 
+            // searchTextBox
+            // 
+            searchTextBox.Location = new Point(65, 195);
+            searchTextBox.Name = "searchTextBox";
+            searchTextBox.Size = new Size(220, 23);
+            searchTextBox.TabIndex = 33;
+            searchTextBox.TextChanged += searchTextBox_TextChanged;
+            // 
+            // searchLabel
+            // 
+            searchLabel.AutoSize = true;
+            searchLabel.Location = new Point(17, 203);
+            searchLabel.Name = "searchLabel";
+            searchLabel.Size = new Size(42, 15);
+            searchLabel.TabIndex = 34;
+            searchLabel.Text = "Search";
+            // 
+            // clearButton
+            // 
+            clearButton.Font = new Font("Century Gothic", 11.25F);
+            clearButton.Location = new Point(369, 176);
+            clearButton.Name = "clearButton";
+            clearButton.Size = new Size(62, 42);
+            clearButton.TabIndex = 35;
+            clearButton.Text = "Clear";
+            clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += clearButton_Click;
+            // 
             // EmployeeList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(796, 495);
-            Controls.Add(button1);
+            Controls.Add(clearButton);
             Controls.Add(searchLabel);
             Controls.Add(searchTextBox);
             Controls.Add(deleteButton);
@@ -587,7 +589,7 @@
         private Button deleteButton;
         private TextBox searchTextBox;
         private Label searchLabel;
-        private Button button1;
+        private Button clearButton;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn EmployeeID;
         private DataGridViewTextBoxColumn FirstName;

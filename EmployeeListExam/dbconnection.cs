@@ -12,7 +12,7 @@ namespace EmployeeListExam
         public string dbconnect() {
 
             //edit the db_connect to your database
-            string db_connect = "server=;user=;password=;database=";
+            string db_connect = "server=localhost;user=root;password=;database=db_employeeinfo";
             return db_connect;
         }
     }

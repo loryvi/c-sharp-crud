@@ -20,6 +20,8 @@ namespace EmployeeListExam
         int i = 0;
 
         Dbconnection dbconn = new Dbconnection(); //dbconnection class
+        Queries query = new Queries();
+
 
         public EmployeeList()
         {
@@ -40,25 +42,10 @@ namespace EmployeeListExam
         {
             db_connect.Open();
             employeeRecordTable.Rows.Clear();
-            cmd = new MySqlCommand("SELECT `EmployeeID`, `FirstName`, `MiddleName`, `LastName`, `birthday`, `addressUnitNum`, `addressBrgy`, `addressCity`, `employeePosition`, `employeeDepartment`, `employeeCompany`, `employeeDateJoined`, `employeeDateLeft` FROM `db_curd`", db_connect);
+            cmd = new MySqlCommand(query.selectQuery(), db_connect);
 
             dataRead = cmd.ExecuteReader();
-            while (dataRead.Read())
-            {
-                employeeRecordTable.Rows.Add(employeeRecordTable.Rows.Count + 1, dataRead["EmployeeID"].ToString(),
-                                                                     dataRead["FirstName"].ToString(),
-                                                                     dataRead["MiddleName"].ToString(),
-                                                                     dataRead["LastName"].ToString(),
-                                                                     dataRead["birthday"],
-                                                                     dataRead["addressUnitNum"].ToString(),
-                                                                     dataRead["addressBrgy"].ToString(),
-                                                                     dataRead["addressCity"].ToString(),
-                                                                     dataRead["employeePosition"].ToString(),
-                                                                     dataRead["employeeDepartment"].ToString(),
-                                                                     dataRead["employeeCompany"].ToString(),
-                                                                     dataRead["employeeDateJoined"],
-                                                                     dataRead["employeeDateLeft"]);
-            }
+            DATAREAD();
 
             dataRead.Close();
             db_connect.Close();
@@ -81,6 +68,10 @@ namespace EmployeeListExam
             employeeCompanyText.Clear();
             employeeDateJoined.Value = DateTime.Now;
             employeeDateLeft.Value = DateTime.Now;
+
+            saveButton.Visible = true;
+            editButton.Enabled = false;
+            deleteButton.Enabled = false;
         }
 
 
@@ -103,32 +94,15 @@ namespace EmployeeListExam
 
             else
             {
-                string birthday = birthdayPicker.Value.ToString("yyyy-MM-dd"); //saves birthdayPicker string to birthday in MYSQl;
-                string date_joined = employeeDateJoined.Value.ToString("yyyy-MM-dd");
-                string date_left = employeeDateLeft.Value.ToString("yyyy-MM-dd");
-                db_connect.Open();
-                cmd = new MySqlCommand("INSERT INTO `db_curd`(`EmployeeID`,`FirstName`,`MiddleName`,`LastName`,`birthday`,`addressUnitNum`,`addressBrgy`,`addressCity`,`employeePosition`,`employeeDepartment`,`employeeCompany`,`employeeDateJoined`,`employeeDateLeft`) " +
-                                                    "VALUES (@EmployeeID, @FirstName, @MiddleName, @LastName, @birthday, @addressUnitNum, @addressBrgy, @addressCity, @employeePosition, @employeeDepartment, @employeeCompany, @employeeDateJoined, @employeeDateLeft)"
-                                                    , db_connect);
-                cmd.Parameters.Clear();
-                cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text); //EmployeeIDText - input
-                cmd.Parameters.AddWithValue("@FirstName", FirstNameText.Text);
-                cmd.Parameters.AddWithValue("@MiddleName", MiddleNameText.Text);
-                cmd.Parameters.AddWithValue("@LastName", LastNameText.Text);
-                cmd.Parameters.AddWithValue("@birthday", birthday);
-                cmd.Parameters.AddWithValue("@addressUnitNum", addressUnitNumText.Text);
-                cmd.Parameters.AddWithValue("@addressBrgy", addressBrgyText.Text);
-                cmd.Parameters.AddWithValue("@addressCity", addressCityText.Text);
-                cmd.Parameters.AddWithValue("@employeePosition", employeePositionText.Text);
-                cmd.Parameters.AddWithValue("@employeeDepartment", employeeDepartmentText.Text);
-                cmd.Parameters.AddWithValue("@employeeCompany", employeeCompanyText.Text);
-                cmd.Parameters.AddWithValue("@employeeDateJoined", date_joined);
-                cmd.Parameters.AddWithValue("@employeeDateLeft", date_left);
 
-                i = cmd.ExecuteNonQuery(); // execute mysqlcommand. //MySql.Data.MySqlClient.MySqlException: 'if Column count match value count at row 1'
+                db_connect.Open();
+                cmd = new MySqlCommand(query.insertQuery(), db_connect);
+                cmd.Parameters.Clear();
+
+                SAVETODATABASE();
 
                 if (i > 0)
-                {   
+                {
 
                     MessageBox.Show("Record Save Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -168,28 +142,12 @@ namespace EmployeeListExam
                 return;
             }
             else
-            {   db_connect.Open();
-                string birthday = birthdayPicker.Value.ToString("yyyy-MM-dd");  //saves birthdayPicker string to birthday in MYSQl;
-                string date_joined = employeeDateJoined.Value.ToString("yyyy-MM-dd");
-                string date_left = employeeDateLeft.Value.ToString("yyyy-MM-dd"); 
-           
-                cmd = new MySqlCommand("UPDATE `db_curd` SET `FirstName`=@FirstName,`MiddleName`=@MiddleName,`LastName`=@LastName,`birthday`=@birthday,`addressUnitNum`=@addressUnitNum,`addressBrgy`=@addressBrgy,`addressCity`=@addressCity,`employeePosition`=@employeePosition,`employeeDepartment`=@employeeDepartment,`employeeCompany`=@employeeCompany,`employeeDateJoined`=@employeeDateJoined,`employeeDateLeft`=@employeeDateLeft WHERE `EmployeeID`=@EmployeeID"
-                                                        , db_connect);
-                cmd.Parameters.AddWithValue("@FirstName", FirstNameText.Text);
-                cmd.Parameters.AddWithValue("@MiddleName", MiddleNameText.Text);
-                cmd.Parameters.AddWithValue("@LastName", LastNameText.Text);
-                cmd.Parameters.AddWithValue("@birthday", birthday);
-                cmd.Parameters.AddWithValue("@addressUnitNum", addressUnitNumText.Text);
-                cmd.Parameters.AddWithValue("@addressBrgy", addressBrgyText.Text);
-                cmd.Parameters.AddWithValue("@addressCity", addressCityText.Text);
-                cmd.Parameters.AddWithValue("@employeePosition", employeePositionText.Text);
-                cmd.Parameters.AddWithValue("@employeeDepartment", employeeDepartmentText.Text);
-                cmd.Parameters.AddWithValue("@employeeCompany", employeeCompanyText.Text);
-                cmd.Parameters.AddWithValue("@employeeDateJoined", date_joined);
-                cmd.Parameters.AddWithValue("@employeeDateLeft", date_left);
-                cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text); //EmployeeIDText - input
+            {
+                db_connect.Open();
 
-                i = cmd.ExecuteNonQuery(); // execute mysqlcommand. //MySql.Data.MySqlClient.MySqlException: 'Column count doesn't match value count at row 1'
+
+                cmd = new MySqlCommand(query.updateQuery(), db_connect);
+                SAVETODATABASE();
 
                 if (i > 0)
                 {
@@ -212,7 +170,7 @@ namespace EmployeeListExam
         {
 
             db_connect.Open();
-            cmd = new MySqlCommand("DELETE From`db_curd` WHERE `EmployeeID`=@EmployeeID", db_connect);
+            cmd = new MySqlCommand(query.deleteQuery(), db_connect);
 
 
             cmd.Parameters.Clear();
@@ -236,7 +194,23 @@ namespace EmployeeListExam
 
 
         }
+        
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            employeeRecordTable.Rows.Clear();
 
+            db_connect.Open();
+            employeeRecordTable.Rows.Clear();
+            cmd = new MySqlCommand(query.searchQuery(searchTextBox.Text), db_connect);
+
+            dataRead = cmd.ExecuteReader();
+            DATAREAD();
+
+            dataRead.Close();
+            db_connect.Close();
+        }
+        
+        
         //selecting from the cell
 
         private void employeeRecordTable_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -262,29 +236,17 @@ namespace EmployeeListExam
 
         }
 
-        private void searchTextBox_TextChanged(object sender, EventArgs e)
+      
+
+        private void clearButton_Click(object sender, EventArgs e)
         {
-            employeeRecordTable.Rows.Clear();
+            clearForm();
+            saveButton.Visible = true;
+            saveButton.Enabled = true;
+        }
 
-            db_connect.Open();
-            employeeRecordTable.Rows.Clear();
-            cmd = new MySqlCommand("SELECT `EmployeeID`, `FirstName`, `MiddleName`, `LastName`, `birthday`, `addressUnitNum`, `addressBrgy`, `addressCity`, `employeePosition`, `employeeDepartment`, `employeeCompany`, `employeeDateJoined`, `employeeDateLeft` FROM `db_curd`" +
-                                   "WHERE employeeID like '%" + searchTextBox.Text + "%'" +
-                                      "or FirstName like '%" + searchTextBox.Text + "%'" +
-                                      "or MiddleName like '%" + searchTextBox.Text + "%'" +
-                                      "or LastName like '%" + searchTextBox.Text + "%'" +
-                                      "or birthday like '%" + searchTextBox.Text + "%'" +
-                                      "or addressUnitNum like '%" + searchTextBox.Text + "%'" +
-                                      "or addressBrgy like '%" + searchTextBox.Text + "%'" +
-                                      "or addressCity like '%" + searchTextBox.Text + "%'" +
-                                      "or employeePosition like '%" + searchTextBox.Text + "%'" +
-                                      "or employeeDepartment like '%" + searchTextBox.Text + "%'" +
-                                      "or employeeCompany like '%" + searchTextBox.Text + "%'" +
-                                      "or employeeDateJoined like '%" + searchTextBox.Text + "%'" +
-                                      "or employeeDateLeft like '%" + searchTextBox.Text + "%'" 
-                                      ,db_connect);
-
-            dataRead = cmd.ExecuteReader();
+        private void DATAREAD()
+        {
             while (dataRead.Read())
             {
                 employeeRecordTable.Rows.Add(employeeRecordTable.Rows.Count + 1, dataRead["EmployeeID"].ToString(),
@@ -301,17 +263,33 @@ namespace EmployeeListExam
                                                                      dataRead["employeeDateJoined"],
                                                                      dataRead["employeeDateLeft"]);
             }
-
-            dataRead.Close();
-            db_connect.Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SAVETODATABASE()
         {
-            clearForm();
-            saveButton.Visible = true;
-            saveButton.Enabled = true;
+
+            string birthday = birthdayPicker.Value.ToString("yyyy-MM-dd");  //saves birthdayPicker string to birthday in MYSQl;
+            string date_joined = employeeDateJoined.Value.ToString("yyyy-MM-dd");
+            string date_left = employeeDateLeft.Value.ToString("yyyy-MM-dd");
+
+            cmd.Parameters.AddWithValue("@FirstName", FirstNameText.Text);
+            cmd.Parameters.AddWithValue("@MiddleName", MiddleNameText.Text);
+            cmd.Parameters.AddWithValue("@LastName", LastNameText.Text);
+            cmd.Parameters.AddWithValue("@birthday", birthday);
+            cmd.Parameters.AddWithValue("@addressUnitNum", addressUnitNumText.Text);
+            cmd.Parameters.AddWithValue("@addressBrgy", addressBrgyText.Text);
+            cmd.Parameters.AddWithValue("@addressCity", addressCityText.Text);
+            cmd.Parameters.AddWithValue("@employeePosition", employeePositionText.Text);
+            cmd.Parameters.AddWithValue("@employeeDepartment", employeeDepartmentText.Text);
+            cmd.Parameters.AddWithValue("@employeeCompany", employeeCompanyText.Text);
+            cmd.Parameters.AddWithValue("@employeeDateJoined", date_joined);
+            cmd.Parameters.AddWithValue("@employeeDateLeft", date_left);
+            cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text); //EmployeeIDText - input
+
+            i = cmd.ExecuteNonQuery();
         }
+
+
     }
 
 }
