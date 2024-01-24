@@ -52,10 +52,10 @@ A CRUD made of  of a C# .Net Forms.
 
 
 ### Screenshot
-![](screenshots/UserInterface.png)
+![](images/UserInterface.png)
 A screenshot of the user interface when ran. 
 
-![](screenshots/mysql.png)
+![](images/mysql.png)
 A screenshot of the connected database from MySQL
 
 ## My process
