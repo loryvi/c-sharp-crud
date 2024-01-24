@@ -23,7 +23,7 @@ A CRUD made of  of a C# .Net Forms.
 ### Data
 ** Data with * are mandatory. Numbers inside () are Maximum Length accepted. 
 
--Data Variables 
+- Data Variables 
  - EmployeeID* (11)
  - FirstName* (50)
  - MiddleName (50)
@@ -39,15 +39,15 @@ A CRUD made of  of a C# .Net Forms.
  - employeeDateLeft
 
 ### Nested Folder
--EmployeeListExam
--README.md
--Images
-  -Form1.cs
-  -Form1.Designer
-  -Form1.resx
-  -isDataValid.csd
-  -dbconnection.cs
-  -queries.cs
+- EmployeeList
+- README.md
+- Images
+- Form1.cs
+- Form1.Designer
+- Form1.resx
+ - isDataValid.cs
+ - dbconnection.cs
+ - queries.cs
 
 
 ### Screenshot
@@ -151,6 +151,14 @@ A screenshot of the connected database from MySQL
             LoadRecord();
             clearForm();
 ```
+
+### Data Validation
+
+- Mandatory Input the required data from the forms
+- Won't save if empty is string
+- Doesn't accepts more than 50 characters
+- **Doesn't accept duplicate EmployeeID (unique and 11 characters)
+
 ### What I learned
 
 - Classes
