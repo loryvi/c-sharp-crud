@@ -34,17 +34,25 @@ namespace EmployeeListExam
 
         //Loads the data from database mySql.
         private void LoadRecord()
-        {
-            db_connect.Open();
-            employeeRecordTable.Rows.Clear();
-            cmd = new MySqlCommand(query.selectQuery(), db_connect);
+        {   try
+            {
+                db_connect.Open();
+                employeeRecordTable.Rows.Clear();
+                cmd = new MySqlCommand(query.selectQuery(), db_connect);
 
-            dataRead = cmd.ExecuteReader();
-            DATAREAD();
+                dataRead = cmd.ExecuteReader();
+                DATAREAD();
 
-            dataRead.Close();
-            db_connect.Close();
+                dataRead.Close();
+                db_connect.Close();
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show("Warning: " + ex.Message, "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
+           
 
         public void clearForm()
         {
@@ -72,18 +80,32 @@ namespace EmployeeListExam
         private void saveButton_Click(object sender, EventArgs e)
         {
 
-                if ((EmployeeIDText.Text == string.Empty) ||
-                 (FirstNameText.Text == string.Empty) ||
-                 (LastNameText.Text == string.Empty) ||
-                 (addressUnitNumText.Text == string.Empty) ||
-                 (addressBrgyText.Text == string.Empty) ||
-                 (addressCityText.Text == string.Empty) ||
-                 (employeePositionText.Text == string.Empty) ||
-                 (employeeDepartmentText.Text == string.Empty))
-                {
-                    MessageBox.Show("Warning: Fill Required Box!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+            if ((EmployeeIDText.Text == string.Empty) ||
+             (FirstNameText.Text == string.Empty) ||
+             (LastNameText.Text == string.Empty) ||
+             (addressUnitNumText.Text == string.Empty) ||
+             (addressBrgyText.Text == string.Empty) ||
+             (addressCityText.Text == string.Empty) ||
+             (employeePositionText.Text == string.Empty) ||
+             (employeeDepartmentText.Text == string.Empty) ||
+             (employeeCompanyText.Text == string.Empty))
+            {
+                MessageBox.Show("Warning: Fill Required Box!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else if ((isDataValid.checkMaxLengthTo11(EmployeeIDText.Text)) ||
+                     (isDataValid.checkMaxLengthTo50(FirstNameText.Text)) ||
+                     (isDataValid.checkMaxLengthTo50(LastNameText.Text)) ||
+                     (isDataValid.checkMaxLengthTo50(addressUnitNumText.Text)) ||
+                     (isDataValid.checkMaxLengthTo50(addressBrgyText.Text)) ||
+                     (isDataValid.checkMaxLengthTo50(addressCityText.Text)) ||
+                     (isDataValid.checkMaxLengthTo50(employeePositionText.Text)) ||
+                     (isDataValid.checkMaxLengthTo50(employeeDepartmentText.Text)) ||
+                     (isDataValid.checkMaxLengthTo50(employeeCompanyText.Text)))
+            {   
+                MessageBox.Show("Warning: Max Character!" + nameof(isDataValid), "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            } 
                 else
                 {
                     db_connect.Open();

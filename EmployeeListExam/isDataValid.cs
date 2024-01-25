@@ -10,6 +10,7 @@ namespace EmployeeListExam
 {
     class isDataValid
     {
+
         public static bool checkEmployeeIDExist(string searchEmployeeID)
         {
             MySqlConnection db_connect;
@@ -30,15 +31,22 @@ namespace EmployeeListExam
             }
         }
 
-        /*public static bool checkStringEmpty(string attributes)
+        public static bool checkStringIsNotEmpty(string input)
         {
-
+            return input == string.Empty;
+        }
+        
+        public static bool checkMaxLengthTo50(string input)
+        {
+            return input.Length >= 50;
+            //check if length is less than or equal to 50
         }
 
-        public static bool checkMaxLength(string attributes)
+        public static bool checkMaxLengthTo11(string input)
         {
-            
-        }*/
+            return input.Length >= 11; //check if length is less than or equal to 50
+        }
 
+        
     }
 }
