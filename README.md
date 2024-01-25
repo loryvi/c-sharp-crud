@@ -88,17 +88,23 @@ A screenshot of the connected database from MySQL
 
 ```
  //Loads the data from database mySql.
-        private void LoadRecord()
-        {
-            db_connect.Open();
-            employeeRecordTable.Rows.Clear();
-            cmd = new MySqlCommand(query.selectQuery(), db_connect);
+         private void LoadRecord()
+        {   try
+            {
+                db_connect.Open();
+                employeeRecordTable.Rows.Clear();
+                cmd = new MySqlCommand(query.selectQuery(), db_connect);
 
-            dataRead = cmd.ExecuteReader();
-            DATAREAD();
+                dataRead = cmd.ExecuteReader();
+                DATAREAD();
 
-            dataRead.Close();
-            db_connect.Close();
+                dataRead.Close();
+                db_connect.Close();
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show("Warning: " + ex.Message, "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 ```
 
