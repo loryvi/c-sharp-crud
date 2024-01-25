@@ -93,7 +93,7 @@ namespace EmployeeListExam
                 MessageBox.Show("Warning: Fill Required Box!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else if ((isDataValid.checkMaxLengthTo11(EmployeeIDText.Text)) ||
+            else if ((isDataValid.checkMaxLengthTo12(EmployeeIDText.Text)) ||
                      (isDataValid.checkMaxLengthTo50(FirstNameText.Text)) ||
                      (isDataValid.checkMaxLengthTo50(LastNameText.Text)) ||
                      (isDataValid.checkMaxLengthTo50(addressUnitNumText.Text)) ||

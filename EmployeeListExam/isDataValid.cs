@@ -39,12 +39,12 @@ namespace EmployeeListExam
         public static bool checkMaxLengthTo50(string input)
         {
             return input.Length >= 50;
-            //check if length is less than or equal to 50
+            //check if length is more than or equal to 50
         }
 
-        public static bool checkMaxLengthTo11(string input)
+        public static bool checkMaxLengthTo12(string input)
         {
-            return input.Length >= 11; //check if length is less than or equal to 50
+            return input.Length >= 12; //check if length more than or equal to 12
         }
 
         
