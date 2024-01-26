@@ -34,7 +34,8 @@ namespace EmployeeListExam
 
         //Loads the data from database mySql.
         private void LoadRecord()
-        {   try
+        {
+            try
             {
                 db_connect.Open();
             }
@@ -42,17 +43,17 @@ namespace EmployeeListExam
             {
                 MessageBox.Show("Warning: " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-                employeeRecordTable.Rows.Clear();
-                cmd = new MySqlCommand(query.selectQuery(), db_connect);
+            employeeRecordTable.Rows.Clear();
+            cmd = new MySqlCommand(query.selectQuery(), db_connect);
 
-                dataRead = cmd.ExecuteReader();
-                DATAREAD();
-            
-                dataRead.Close();
-                db_connect.Close();
+            dataRead = cmd.ExecuteReader();
+            DATAREAD();
+
+            dataRead.Close();
+            db_connect.Close();
         }
 
-           
+
 
         public void clearForm()
         {
@@ -102,11 +103,12 @@ namespace EmployeeListExam
                      (isDataValid.checkMaxLengthTo50(employeePositionText.Text)) ||
                      (isDataValid.checkMaxLengthTo50(employeeDepartmentText.Text)) ||
                      (isDataValid.checkMaxLengthTo50(employeeCompanyText.Text)))
-            {   
-                MessageBox.Show("Warning: Max Character!" + nameof(Attribute here), "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            {
+                MessageBox.Show("Warning: Max Character!" + nameof(isDataValid), "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            } 
-            else if ((isDataValid.checkEmployeeIDExist(EmployeeIDText.Text))) {
+            }
+            else if ((isDataValid.checkEmployeeIDExist(EmployeeIDText.Text)))
+            {
                 MessageBox.Show("Warning: Employee ID already exist. ", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 EmployeeIDText.Clear();
                 return;
@@ -115,26 +117,26 @@ namespace EmployeeListExam
             else
             {
 
-                    db_connect.Open();
-                    cmd = new MySqlCommand(query.insertQuery(), db_connect);
-                    cmd.Parameters.Clear();
+                db_connect.Open();
+                cmd = new MySqlCommand(query.insertQuery(), db_connect);
+                cmd.Parameters.Clear();
 
-                    SAVETODATABASE();
+                SAVETODATABASE();
 
-                    if (i > 0)
-                    {
+                if (i > 0)
+                {
 
-                        MessageBox.Show("Record Save Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Record Save Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
-
-                    db_connect.Close();
-                    LoadRecord();
-                    clearForm();
+                    MessageBox.Show("Record Save Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else
+                {
+                    MessageBox.Show("Record Save Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+                db_connect.Close();
+                LoadRecord();
+                clearForm();
+            }
 
 
         }
@@ -147,7 +149,7 @@ namespace EmployeeListExam
             editButton.Enabled = true;
 
             cmd.Parameters.Clear();
-           
+
 
             if ((EmployeeIDText.Text == string.Empty) ||
                (FirstNameText.Text == string.Empty) ||
@@ -158,14 +160,14 @@ namespace EmployeeListExam
                (employeePositionText.Text == string.Empty) ||
                (employeeDepartmentText.Text == string.Empty) ||
                (employeeCompanyText.Text == string.Empty))
-            { 
+            {
                 MessageBox.Show("Warning: Fill Required Box!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-              
-              return;
+
+                return;
             }
             else
             {
-               //cannot edit EmployeeID
+                //cannot edit EmployeeID
                 db_connect.Open();
                 cmd = new MySqlCommand(query.updateQuery(), db_connect);
                 SAVETODATABASE();
@@ -213,7 +215,7 @@ namespace EmployeeListExam
 
 
         }
-        
+
         private void searchTextBox_TextChanged(object sender, EventArgs e)
         {
             employeeRecordTable.Rows.Clear();
@@ -228,8 +230,8 @@ namespace EmployeeListExam
             dataRead.Close();
             db_connect.Close();
         }
-        
-        
+
+
         //selecting from the cell
 
         private void employeeRecordTable_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -255,7 +257,7 @@ namespace EmployeeListExam
 
         }
 
-      
+
 
         private void clearButton_Click(object sender, EventArgs e)
         {
@@ -290,7 +292,7 @@ namespace EmployeeListExam
             string birthday = birthdayPicker.Value.ToString("yyyy-MM-dd");  //saves birthdayPicker string to birthday in MYSQl;
             string date_joined = employeeDateJoined.Value.ToString("yyyy-MM-dd");
             string date_left = employeeDateLeft.Value.ToString("yyyy-MM-dd");
-            
+
             cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text);
             cmd.Parameters.AddWithValue("@FirstName", FirstNameText.Text);
             cmd.Parameters.AddWithValue("@MiddleName", MiddleNameText.Text);
@@ -304,7 +306,7 @@ namespace EmployeeListExam
             cmd.Parameters.AddWithValue("@employeeCompany", employeeCompanyText.Text);
             cmd.Parameters.AddWithValue("@employeeDateJoined", date_joined);
             cmd.Parameters.AddWithValue("@employeeDateLeft", date_left);
-             //EmployeeIDText - input
+            //EmployeeIDText - input
 
             i = cmd.ExecuteNonQuery();
         }
@@ -313,4 +315,4 @@ namespace EmployeeListExam
     }
 
 }
-        
+
