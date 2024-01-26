@@ -181,7 +181,7 @@ A screenshot of the connected database from MySQL
 - :bulb: fix interface
 
 ### Useful resources
-[Online Syntax Validator](https://www.eversql.com/sql-syntax-check-validator/)
-[SDPT Solutions Basic C# Playlist | Tagalog](https://youtube.com/playlist?list=PLVnJhHoKgEmr_K2Gn9WWZI4ulrkEUll_s&si=6w0KY1L1NEfSpbAd)
-[Handling Exceptions in C# - When to catch them, where to catch them, and how to catch them | IAmTimCorey](https://www.youtube.com/watch?v=LSkbnpjCEkk&t=1432s)
-[How to Use a Debugger - Debugger Tutorial | Tech With Tim](https://www.youtube.com/watch?v=7qZBwhSlfOo)
+- [EverSQL SQL Query Syntax Check & Validator](https://www.eversql.com/sql-syntax-check-validator/)
+- [SDPT Solutions Basic C# Playlist | Tagalog | Youtube Playlist](https://youtube.com/playlist?list=PLVnJhHoKgEmr_K2Gn9WWZI4ulrkEUll_s&si=6w0KY1L1NEfSpbAd)
+- [Handling Exceptions in C# - When to catch them, where to catch them, and how to catch them | IAmTimCorey](https://www.youtube.com/watch?v=LSkbnpjCEkk&t=1432s)
+- [How to Use a Debugger - Debugger Tutorial | Tech With Tim](https://www.youtube.com/watch?v=7qZBwhSlfOo)
