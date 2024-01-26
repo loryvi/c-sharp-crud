@@ -3,8 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace EmployeeListExam
 {
@@ -13,22 +12,27 @@ namespace EmployeeListExam
 
         public static bool checkEmployeeIDExist(string searchEmployeeID)
         {
+            
+            bool duplicate = false;
             MySqlConnection db_connect;
+            MySqlCommand cmd;
+
             Dbconnection dbconn = new Dbconnection();
+            
             db_connect = new MySqlConnection(dbconn.dbconnect());
 
-            MySqlCommand  cmd = new MySqlCommand("SELECT EXISTS(SELECT COUNT (*) FROM `db_curd` WHERE EmployeeID='" + searchEmployeeID + "')", db_connect);
+
+            db_connect.Open();
+                      
+            cmd = new MySqlCommand("SELECT EXISTS(SELECT COUNT(*) FROM `db_curd` WHERE EmployeeID='" + searchEmployeeID + "')", db_connect);
+            cmd.Parameters.Clear();
             object i = cmd.ExecuteScalar();
-            if (Convert.ToInt32( i) > 0)
+            if(Convert.ToInt32(i)> 0)
             {
-                //MessageBox.Show("Warning: Employee ID exist!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return true;
+                duplicate = true;
             }
-            else
-            {
-                //MessageBox.Show("Warning: Fill Required Box!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+            db_connect.Close();
+            return duplicate;
         }
 
         public static bool checkStringIsNotEmpty(string input)

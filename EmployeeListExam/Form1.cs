@@ -37,19 +37,19 @@ namespace EmployeeListExam
         {   try
             {
                 db_connect.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Warning: " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
                 employeeRecordTable.Rows.Clear();
                 cmd = new MySqlCommand(query.selectQuery(), db_connect);
 
                 dataRead = cmd.ExecuteReader();
                 DATAREAD();
-
+            
                 dataRead.Close();
                 db_connect.Close();
-            }
-            catch (InvalidOperationException ex)
-            {
-                MessageBox.Show("Warning: " + ex.Message, "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
            
@@ -103,11 +103,18 @@ namespace EmployeeListExam
                      (isDataValid.checkMaxLengthTo50(employeeDepartmentText.Text)) ||
                      (isDataValid.checkMaxLengthTo50(employeeCompanyText.Text)))
             {   
-                MessageBox.Show("Warning: Max Character!" + nameof(isDataValid), "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Warning: Max Character!" + nameof(Attribute here), "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             } 
-                else
-                {
+            else if ((isDataValid.checkEmployeeIDExist(EmployeeIDText.Text))) {
+                MessageBox.Show("Warning: Employee ID already exist. ", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                EmployeeIDText.Clear();
+                return;
+            }
+
+            else
+            {
+
                     db_connect.Open();
                     cmd = new MySqlCommand(query.insertQuery(), db_connect);
                     cmd.Parameters.Clear();
@@ -185,11 +192,9 @@ namespace EmployeeListExam
 
             db_connect.Open();
             cmd = new MySqlCommand(query.deleteQuery(), db_connect);
-
-
             cmd.Parameters.Clear();
-
-            cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text); //EmployeeIDText - input
+            cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text); //get EmployeeIDText - input and run to query
+                                                                             //delete if employeeID match   
 
             i = cmd.ExecuteNonQuery(); // execute mysqlcommand. checks if 'Column count match value count at row 1'
 
