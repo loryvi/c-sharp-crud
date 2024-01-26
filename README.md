@@ -10,7 +10,7 @@
   - [READ](#READ)
   - [UPDATE](#update)
   - [DELETE](#delete)
-  - [Data Validation](#datavalidation)
+  - [Data Validation](#data-validation)
 - [My process](#my-process)
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
@@ -19,6 +19,8 @@
 ## Overview
 
 A CRUD made of  of a C# .Net Forms.
+
+[Video Demo]
 
 ### Data
 ** Data with * are mandatory. Numbers inside () are Maximum Length accepted. 
@@ -45,9 +47,9 @@ A CRUD made of  of a C# .Net Forms.
 - Form1.cs
 - Form1.Designer
 - Form1.resx
-  - isDataValid.cs
+  - [isDataValid.cs](/isDataValid.cs)
   - dbconnection.cs
-  - queries.cs
+  - [queries.cs](/queries.cs)
 
 
 ### Screenshot
@@ -163,7 +165,7 @@ A screenshot of the connected database from MySQL
 - Mandatory Input the required data from the forms
 - Won't save if empty is string
 - Doesn't accepts more than 50 characters
-- **Doesn't accept duplicate EmployeeID (unique and 11 characters)
+- Doesn't accept duplicate EmployeeID (unique and 11 characters)
 
 ### What I learned
 
@@ -179,3 +181,7 @@ A screenshot of the connected database from MySQL
 - :bulb: fix interface
 
 ### Useful resources
+[Online Syntax Validator](https://www.eversql.com/sql-syntax-check-validator/)
+[SDPT Solutions Basic C# Playlist | Tagalog](https://youtube.com/playlist?list=PLVnJhHoKgEmr_K2Gn9WWZI4ulrkEUll_s&si=6w0KY1L1NEfSpbAd)
+[Handling Exceptions in C# - When to catch them, where to catch them, and how to catch them | IAmTimCorey](https://www.youtube.com/watch?v=LSkbnpjCEkk&t=1432s)
+[How to Use a Debugger - Debugger Tutorial | Tech With Tim](https://www.youtube.com/watch?v=7qZBwhSlfOo)
