@@ -32,7 +32,7 @@ namespace EmployeeListExam
         }
 
 
-        //Loads the data from database mySql.
+      
         private void LoadRecord()
         {
             try
@@ -57,17 +57,17 @@ namespace EmployeeListExam
 
         public void clearForm()
         {
-            EmployeeIDText.Clear();
-            FirstNameText.Clear();
-            MiddleNameText.Clear();
-            LastNameText.Clear();
+            employeeID.Clear();
+            firstName.Clear();
+            middleName.Clear();
+            lastName.Clear();
             birthdayPicker.Value = DateTime.Now;
-            addressUnitNumText.Clear();
-            addressBrgyText.Clear();
-            addressCityText.Clear();
-            employeePositionText.Clear();
-            employeeDepartmentText.Clear();
-            employeeCompanyText.Clear();
+            addressUnitNum.Clear();
+            addressBrgy.Clear();
+            addressCity.Clear();
+            employeePosition.Clear();
+            employeeDepartment.Clear();
+            employeeCompany.Clear();
             employeeDateJoined.Value = DateTime.Now;
             employeeDateLeft.Value = DateTime.Now;
 
@@ -81,39 +81,12 @@ namespace EmployeeListExam
         private void saveButton_Click(object sender, EventArgs e)
         {
 
-            if ((EmployeeIDText.Text == string.Empty) ||
-             (FirstNameText.Text == string.Empty) ||
-             (LastNameText.Text == string.Empty) ||
-             (addressUnitNumText.Text == string.Empty) ||
-             (addressBrgyText.Text == string.Empty) ||
-             (addressCityText.Text == string.Empty) ||
-             (employeePositionText.Text == string.Empty) ||
-             (employeeDepartmentText.Text == string.Empty) ||
-             (employeeCompanyText.Text == string.Empty))
+            if (true)
             {
-                MessageBox.Show("Warning: Fill Required Box!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
+                                                    addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
+                                                    employeePosition.Text, employeeDepartment.Text, employeeCompany.Text);
             }
-            else if ((isDataValid.checkMaxLengthTo12(EmployeeIDText.Text)) ||
-                     (isDataValid.checkMaxLengthTo50(FirstNameText.Text)) ||
-                     (isDataValid.checkMaxLengthTo50(LastNameText.Text)) ||
-                     (isDataValid.checkMaxLengthTo50(addressUnitNumText.Text)) ||
-                     (isDataValid.checkMaxLengthTo50(addressBrgyText.Text)) ||
-                     (isDataValid.checkMaxLengthTo50(addressCityText.Text)) ||
-                     (isDataValid.checkMaxLengthTo50(employeePositionText.Text)) ||
-                     (isDataValid.checkMaxLengthTo50(employeeDepartmentText.Text)) ||
-                     (isDataValid.checkMaxLengthTo50(employeeCompanyText.Text)))
-            {
-                MessageBox.Show("Warning: Max Character!" + nameof(isDataValid), "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            else if ((isDataValid.checkEmployeeIDExist(EmployeeIDText.Text)))
-            {
-                MessageBox.Show("Warning: Employee ID already exist. ", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                EmployeeIDText.Clear();
-                return;
-            }
-
             else
             {
 
@@ -151,15 +124,15 @@ namespace EmployeeListExam
             cmd.Parameters.Clear();
 
 
-            if ((EmployeeIDText.Text == string.Empty) ||
-               (FirstNameText.Text == string.Empty) ||
-               (LastNameText.Text == string.Empty) ||
-               (addressUnitNumText.Text == string.Empty) ||
-               (addressBrgyText.Text == string.Empty) ||
-               (addressCityText.Text == string.Empty) ||
-               (employeePositionText.Text == string.Empty) ||
-               (employeeDepartmentText.Text == string.Empty) ||
-               (employeeCompanyText.Text == string.Empty))
+            if ((employeeID.Text == string.Empty) ||
+               (firstName.Text == string.Empty) ||
+               (lastName.Text == string.Empty) ||
+               (addressUnitNum.Text == string.Empty) ||
+               (addressBrgy.Text == string.Empty) ||
+               (addressCity.Text == string.Empty) ||
+               (employeePosition.Text == string.Empty) ||
+               (employeeDepartment.Text == string.Empty) ||
+               (employeeCompany.Text == string.Empty))
             {
                 MessageBox.Show("Warning: Fill Required Box!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
@@ -195,7 +168,7 @@ namespace EmployeeListExam
             db_connect.Open();
             cmd = new MySqlCommand(query.deleteQuery(), db_connect);
             cmd.Parameters.Clear();
-            cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text); //get EmployeeIDText - input and run to query
+            cmd.Parameters.AddWithValue("@EmployeeID", employeeID.Text); //get EmployeeIDText - input and run to query
                                                                              //delete if employeeID match   
 
             i = cmd.ExecuteNonQuery(); // execute mysqlcommand. checks if 'Column count match value count at row 1'
@@ -222,7 +195,7 @@ namespace EmployeeListExam
 
             db_connect.Open();
             employeeRecordTable.Rows.Clear();
-            cmd = new MySqlCommand(query.searchQuery(searchTextBox.Text), db_connect);
+            cmd = new MySqlCommand(query.searchQuery(search.Text), db_connect);
 
             dataRead = cmd.ExecuteReader();
             DATAREAD();
@@ -232,7 +205,7 @@ namespace EmployeeListExam
         }
 
 
-        //selecting from the cell
+        
 
         private void employeeRecordTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -241,17 +214,17 @@ namespace EmployeeListExam
             editButton.Enabled = true;
             deleteButton.Enabled = true;
 
-            EmployeeIDText.Text = employeeRecordTable.CurrentRow.Cells[1].Value.ToString();
-            FirstNameText.Text = employeeRecordTable.CurrentRow.Cells[2].Value.ToString();
-            MiddleNameText.Text = employeeRecordTable.CurrentRow.Cells[3].Value.ToString();
-            LastNameText.Text = employeeRecordTable.CurrentRow.Cells[4].Value.ToString();
+            employeeID.Text = employeeRecordTable.CurrentRow.Cells[1].Value.ToString();
+            firstName.Text = employeeRecordTable.CurrentRow.Cells[2].Value.ToString();
+            middleName.Text = employeeRecordTable.CurrentRow.Cells[3].Value.ToString();
+            lastName.Text = employeeRecordTable.CurrentRow.Cells[4].Value.ToString();
             birthdayPicker.Text = employeeRecordTable.CurrentRow.Cells[5].Value.ToString();
-            addressUnitNumText.Text = employeeRecordTable.CurrentRow.Cells[6].Value.ToString();
-            addressBrgyText.Text = employeeRecordTable.CurrentRow.Cells[7].Value.ToString();
-            addressCityText.Text = employeeRecordTable.CurrentRow.Cells[8].Value.ToString();
-            employeePositionText.Text = employeeRecordTable.CurrentRow.Cells[9].Value.ToString();
-            employeeDepartmentText.Text = employeeRecordTable.CurrentRow.Cells[10].Value.ToString();
-            employeeCompanyText.Text = employeeRecordTable.CurrentRow.Cells[11].Value.ToString();
+            addressUnitNum.Text = employeeRecordTable.CurrentRow.Cells[6].Value.ToString();
+            addressBrgy.Text = employeeRecordTable.CurrentRow.Cells[7].Value.ToString();
+            addressCity.Text = employeeRecordTable.CurrentRow.Cells[8].Value.ToString();
+            employeePosition.Text = employeeRecordTable.CurrentRow.Cells[9].Value.ToString();
+            employeeDepartment.Text = employeeRecordTable.CurrentRow.Cells[10].Value.ToString();
+            employeeCompany.Text = employeeRecordTable.CurrentRow.Cells[11].Value.ToString();
             employeeDateJoined.Text = employeeRecordTable.CurrentRow.Cells[12].Value.ToString();
             employeeDateLeft.Text = employeeRecordTable.CurrentRow.Cells[13].Value.ToString();
 
@@ -293,17 +266,17 @@ namespace EmployeeListExam
             string date_joined = employeeDateJoined.Value.ToString("yyyy-MM-dd");
             string date_left = employeeDateLeft.Value.ToString("yyyy-MM-dd");
 
-            cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text);
-            cmd.Parameters.AddWithValue("@FirstName", FirstNameText.Text);
-            cmd.Parameters.AddWithValue("@MiddleName", MiddleNameText.Text);
-            cmd.Parameters.AddWithValue("@LastName", LastNameText.Text);
+            cmd.Parameters.AddWithValue("@EmployeeID", employeeID.Text);
+            cmd.Parameters.AddWithValue("@FirstName", firstName.Text);
+            cmd.Parameters.AddWithValue("@MiddleName", middleName.Text);
+            cmd.Parameters.AddWithValue("@LastName", lastName.Text);
             cmd.Parameters.AddWithValue("@birthday", birthday);
-            cmd.Parameters.AddWithValue("@addressUnitNum", addressUnitNumText.Text);
-            cmd.Parameters.AddWithValue("@addressBrgy", addressBrgyText.Text);
-            cmd.Parameters.AddWithValue("@addressCity", addressCityText.Text);
-            cmd.Parameters.AddWithValue("@employeePosition", employeePositionText.Text);
-            cmd.Parameters.AddWithValue("@employeeDepartment", employeeDepartmentText.Text);
-            cmd.Parameters.AddWithValue("@employeeCompany", employeeCompanyText.Text);
+            cmd.Parameters.AddWithValue("@addressUnitNum", addressUnitNum.Text);
+            cmd.Parameters.AddWithValue("@addressBrgy", addressBrgy.Text);
+            cmd.Parameters.AddWithValue("@addressCity", addressCity.Text);
+            cmd.Parameters.AddWithValue("@employeePosition", employeePosition.Text);
+            cmd.Parameters.AddWithValue("@employeeDepartment", employeeDepartment.Text);
+            cmd.Parameters.AddWithValue("@employeeCompany", employeeCompany.Text);
             cmd.Parameters.AddWithValue("@employeeDateJoined", date_joined);
             cmd.Parameters.AddWithValue("@employeeDateLeft", date_left);
             //EmployeeIDText - input
@@ -314,5 +287,7 @@ namespace EmployeeListExam
 
     }
 
-}
+
+    
+    }
 
