@@ -32,51 +32,37 @@
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             EmployeeID_label = new Label();
-            EmployeeIDText = new TextBox();
-            FirstNameText = new TextBox();
+            employeeID = new TextBox();
+            firstName = new TextBox();
             label1 = new Label();
-            MiddleNameText = new TextBox();
+            middleName = new TextBox();
             label2 = new Label();
-            LastNameText = new TextBox();
+            lastName = new TextBox();
             label3 = new Label();
             BirthdayLabel = new Label();
             birthdayPicker = new DateTimePicker();
             addressLabel = new Label();
-            addressUnitNumText = new TextBox();
+            addressUnitNum = new TextBox();
             unitNumLabel = new Label();
             addressCityLabel = new Label();
             addressBrgyLabel = new Label();
-            addressCityText = new TextBox();
-            addressBrgyText = new TextBox();
+            addressCity = new TextBox();
+            addressBrgy = new TextBox();
             label4 = new Label();
-            employeePositionText = new TextBox();
+            employeePosition = new TextBox();
             positionLabel = new Label();
-            employeeDepartmentText = new TextBox();
+            employeeDepartment = new TextBox();
             departmentLabel = new Label();
-            employeeCompanyText = new TextBox();
+            employeeCompany = new TextBox();
             companyLabel = new Label();
             employeeDateJoined = new DateTimePicker();
             employeeDateLeft = new DateTimePicker();
             label5 = new Label();
             employeeRecordTable = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            EmployeeID = new DataGridViewTextBoxColumn();
-            FirstName = new DataGridViewTextBoxColumn();
-            MiddleName = new DataGridViewTextBoxColumn();
-            LastName = new DataGridViewTextBoxColumn();
-            birthdate = new DataGridViewTextBoxColumn();
-            addressBrgy = new DataGridViewTextBoxColumn();
-            addressUnitNum = new DataGridViewTextBoxColumn();
-            City = new DataGridViewTextBoxColumn();
-            employeePosition = new DataGridViewTextBoxColumn();
-            employeeDepartment = new DataGridViewTextBoxColumn();
-            employeeCompany = new DataGridViewTextBoxColumn();
-            Column11 = new DataGridViewTextBoxColumn();
-            Column12 = new DataGridViewTextBoxColumn();
             saveButton = new Button();
             editButton = new Button();
             deleteButton = new Button();
-            searchTextBox = new TextBox();
+            search = new TextBox();
             searchLabel = new Label();
             clearButton = new Button();
             label6 = new Label();
@@ -89,6 +75,20 @@
             label13 = new Label();
             label14 = new Label();
             label15 = new Label();
+            Column1 = new DataGridViewTextBoxColumn();
+            employee_ID = new DataGridViewTextBoxColumn();
+            employee_FirstName = new DataGridViewTextBoxColumn();
+            employee_MiddleName = new DataGridViewTextBoxColumn();
+            employee_LastName = new DataGridViewTextBoxColumn();
+            employee_birthdate = new DataGridViewTextBoxColumn();
+            employee_addressBrgy = new DataGridViewTextBoxColumn();
+            employee_addressUnitNum = new DataGridViewTextBoxColumn();
+            employee_City = new DataGridViewTextBoxColumn();
+            employee_Position = new DataGridViewTextBoxColumn();
+            employee_Department = new DataGridViewTextBoxColumn();
+            employee_Company = new DataGridViewTextBoxColumn();
+            employee_dataJoined = new DataGridViewTextBoxColumn();
+            employee_DateJoined = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)employeeRecordTable).BeginInit();
             SuspendLayout();
             // 
@@ -101,19 +101,19 @@
             EmployeeID_label.TabIndex = 0;
             EmployeeID_label.Text = "Employee ID: ";
             // 
-            // EmployeeIDText
+            // employeeID
             // 
-            EmployeeIDText.Location = new Point(9, 42);
-            EmployeeIDText.Name = "EmployeeIDText";
-            EmployeeIDText.Size = new Size(117, 23);
-            EmployeeIDText.TabIndex = 1;
+            employeeID.Location = new Point(9, 42);
+            employeeID.Name = "employeeID";
+            employeeID.Size = new Size(117, 23);
+            employeeID.TabIndex = 1;
             // 
-            // FirstNameText
+            // firstName
             // 
-            FirstNameText.Location = new Point(133, 42);
-            FirstNameText.Name = "FirstNameText";
-            FirstNameText.Size = new Size(218, 23);
-            FirstNameText.TabIndex = 3;
+            firstName.Location = new Point(133, 42);
+            firstName.Name = "firstName";
+            firstName.Size = new Size(218, 23);
+            firstName.TabIndex = 3;
             // 
             // label1
             // 
@@ -124,12 +124,12 @@
             label1.TabIndex = 2;
             label1.Text = "First Name: ";
             // 
-            // MiddleNameText
+            // middleName
             // 
-            MiddleNameText.Location = new Point(357, 42);
-            MiddleNameText.Name = "MiddleNameText";
-            MiddleNameText.Size = new Size(200, 23);
-            MiddleNameText.TabIndex = 5;
+            middleName.Location = new Point(357, 42);
+            middleName.Name = "middleName";
+            middleName.Size = new Size(200, 23);
+            middleName.TabIndex = 5;
             // 
             // label2
             // 
@@ -140,12 +140,12 @@
             label2.TabIndex = 4;
             label2.Text = "Middle Name: ";
             // 
-            // LastNameText
+            // lastName
             // 
-            LastNameText.Location = new Point(563, 42);
-            LastNameText.Name = "LastNameText";
-            LastNameText.Size = new Size(225, 23);
-            LastNameText.TabIndex = 7;
+            lastName.Location = new Point(563, 42);
+            lastName.Name = "lastName";
+            lastName.Size = new Size(225, 23);
+            lastName.TabIndex = 7;
             // 
             // label3
             // 
@@ -182,12 +182,12 @@
             addressLabel.TabIndex = 10;
             addressLabel.Text = "ADDRESS:";
             // 
-            // addressUnitNumText
+            // addressUnitNum
             // 
-            addressUnitNumText.Location = new Point(272, 86);
-            addressUnitNumText.Name = "addressUnitNumText";
-            addressUnitNumText.Size = new Size(149, 23);
-            addressUnitNumText.TabIndex = 11;
+            addressUnitNum.Location = new Point(272, 86);
+            addressUnitNum.Name = "addressUnitNum";
+            addressUnitNum.Size = new Size(149, 23);
+            addressUnitNum.TabIndex = 11;
             // 
             // unitNumLabel
             // 
@@ -216,19 +216,19 @@
             addressBrgyLabel.TabIndex = 16;
             addressBrgyLabel.Text = "Brgy: ";
             // 
-            // addressCityText
+            // addressCity
             // 
-            addressCityText.Location = new Point(607, 86);
-            addressCityText.Name = "addressCityText";
-            addressCityText.Size = new Size(181, 23);
-            addressCityText.TabIndex = 17;
+            addressCity.Location = new Point(607, 86);
+            addressCity.Name = "addressCity";
+            addressCity.Size = new Size(181, 23);
+            addressCity.TabIndex = 17;
             // 
-            // addressBrgyText
+            // addressBrgy
             // 
-            addressBrgyText.Location = new Point(423, 86);
-            addressBrgyText.Name = "addressBrgyText";
-            addressBrgyText.Size = new Size(182, 23);
-            addressBrgyText.TabIndex = 18;
+            addressBrgy.Location = new Point(423, 86);
+            addressBrgy.Name = "addressBrgy";
+            addressBrgy.Size = new Size(182, 23);
+            addressBrgy.TabIndex = 18;
             // 
             // label4
             // 
@@ -239,12 +239,12 @@
             label4.TabIndex = 25;
             label4.Text = "Date Joined:";
             // 
-            // employeePositionText
+            // employeePosition
             // 
-            employeePositionText.Location = new Point(279, 138);
-            employeePositionText.Name = "employeePositionText";
-            employeePositionText.Size = new Size(163, 23);
-            employeePositionText.TabIndex = 24;
+            employeePosition.Location = new Point(279, 138);
+            employeePosition.Name = "employeePosition";
+            employeePosition.Size = new Size(163, 23);
+            employeePosition.TabIndex = 24;
             // 
             // positionLabel
             // 
@@ -255,12 +255,12 @@
             positionLabel.TabIndex = 23;
             positionLabel.Text = "Position:";
             // 
-            // employeeDepartmentText
+            // employeeDepartment
             // 
-            employeeDepartmentText.Location = new Point(133, 138);
-            employeeDepartmentText.Name = "employeeDepartmentText";
-            employeeDepartmentText.Size = new Size(140, 23);
-            employeeDepartmentText.TabIndex = 22;
+            employeeDepartment.Location = new Point(133, 138);
+            employeeDepartment.Name = "employeeDepartment";
+            employeeDepartment.Size = new Size(140, 23);
+            employeeDepartment.TabIndex = 22;
             // 
             // departmentLabel
             // 
@@ -271,12 +271,12 @@
             departmentLabel.TabIndex = 21;
             departmentLabel.Text = "Department:";
             // 
-            // employeeCompanyText
+            // employeeCompany
             // 
-            employeeCompanyText.Location = new Point(9, 138);
-            employeeCompanyText.Name = "employeeCompanyText";
-            employeeCompanyText.Size = new Size(117, 23);
-            employeeCompanyText.TabIndex = 20;
+            employeeCompany.Location = new Point(9, 138);
+            employeeCompany.Name = "employeeCompany";
+            employeeCompany.Size = new Size(117, 23);
+            employeeCompany.TabIndex = 20;
             // 
             // companyLabel
             // 
@@ -316,7 +316,7 @@
             employeeRecordTable.AllowUserToDeleteRows = false;
             employeeRecordTable.BackgroundColor = SystemColors.ControlLightLight;
             employeeRecordTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            employeeRecordTable.Columns.AddRange(new DataGridViewColumn[] { Column1, EmployeeID, FirstName, MiddleName, LastName, birthdate, addressBrgy, addressUnitNum, City, employeePosition, employeeDepartment, employeeCompany, Column11, Column12 });
+            employeeRecordTable.Columns.AddRange(new DataGridViewColumn[] { Column1, employee_ID, employee_FirstName, employee_MiddleName, employee_LastName, employee_birthdate, employee_addressBrgy, employee_addressUnitNum, employee_City, employee_Position, employee_Department, employee_Company, employee_dataJoined, employee_DateJoined });
             employeeRecordTable.Location = new Point(9, 234);
             employeeRecordTable.Name = "employeeRecordTable";
             employeeRecordTable.ReadOnly = true;
@@ -324,132 +324,6 @@
             employeeRecordTable.Size = new Size(779, 259);
             employeeRecordTable.TabIndex = 29;
             employeeRecordTable.CellClick += employeeRecordTable_CellClick;
-            // 
-            // Column1
-            // 
-            Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column1.HeaderText = "#";
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 39;
-            // 
-            // EmployeeID
-            // 
-            EmployeeID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            EmployeeID.HeaderText = "Employee No.";
-            EmployeeID.MaxInputLength = 11;
-            EmployeeID.Name = "EmployeeID";
-            EmployeeID.ReadOnly = true;
-            EmployeeID.Width = 97;
-            // 
-            // FirstName
-            // 
-            FirstName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            FirstName.HeaderText = "First Name";
-            FirstName.MaxInputLength = 50;
-            FirstName.Name = "FirstName";
-            FirstName.ReadOnly = true;
-            FirstName.Width = 82;
-            // 
-            // MiddleName
-            // 
-            MiddleName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            MiddleName.HeaderText = "Middle Name";
-            MiddleName.MaxInputLength = 50;
-            MiddleName.Name = "MiddleName";
-            MiddleName.ReadOnly = true;
-            MiddleName.Width = 96;
-            // 
-            // LastName
-            // 
-            LastName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            LastName.HeaderText = "Last Name";
-            LastName.MaxInputLength = 50;
-            LastName.Name = "LastName";
-            LastName.ReadOnly = true;
-            LastName.Width = 81;
-            // 
-            // birthdate
-            // 
-            birthdate.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.Format = "d";
-            dataGridViewCellStyle4.NullValue = null;
-            birthdate.DefaultCellStyle = dataGridViewCellStyle4;
-            birthdate.HeaderText = "Birthdate";
-            birthdate.Name = "birthdate";
-            birthdate.ReadOnly = true;
-            birthdate.Width = 80;
-            // 
-            // addressBrgy
-            // 
-            addressBrgy.HeaderText = "Brgy";
-            addressBrgy.MaxInputLength = 50;
-            addressBrgy.Name = "addressBrgy";
-            addressBrgy.ReadOnly = true;
-            // 
-            // addressUnitNum
-            // 
-            addressUnitNum.HeaderText = "Unit #";
-            addressUnitNum.MaxInputLength = 50;
-            addressUnitNum.Name = "addressUnitNum";
-            addressUnitNum.ReadOnly = true;
-            // 
-            // City
-            // 
-            City.HeaderText = "City";
-            City.MaxInputLength = 50;
-            City.Name = "City";
-            City.ReadOnly = true;
-            // 
-            // employeePosition
-            // 
-            employeePosition.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            employeePosition.HeaderText = "Position";
-            employeePosition.MaxInputLength = 50;
-            employeePosition.Name = "employeePosition";
-            employeePosition.ReadOnly = true;
-            employeePosition.Width = 75;
-            // 
-            // employeeDepartment
-            // 
-            employeeDepartment.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            employeeDepartment.HeaderText = "Department";
-            employeeDepartment.MaxInputLength = 50;
-            employeeDepartment.Name = "employeeDepartment";
-            employeeDepartment.ReadOnly = true;
-            employeeDepartment.Width = 95;
-            // 
-            // employeeCompany
-            // 
-            employeeCompany.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            employeeCompany.HeaderText = "Company Name";
-            employeeCompany.MaxInputLength = 50;
-            employeeCompany.Name = "employeeCompany";
-            employeeCompany.ReadOnly = true;
-            employeeCompany.Width = 109;
-            // 
-            // Column11
-            // 
-            Column11.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle5.Format = "d";
-            dataGridViewCellStyle5.NullValue = null;
-            Column11.DefaultCellStyle = dataGridViewCellStyle5;
-            Column11.HeaderText = "Date Joined";
-            Column11.Name = "Column11";
-            Column11.ReadOnly = true;
-            Column11.Width = 86;
-            // 
-            // Column12
-            // 
-            Column12.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle6.Format = "d";
-            dataGridViewCellStyle6.NullValue = null;
-            Column12.DefaultCellStyle = dataGridViewCellStyle6;
-            Column12.HeaderText = "Date Left";
-            Column12.Name = "Column12";
-            Column12.ReadOnly = true;
-            Column12.Width = 73;
             // 
             // saveButton
             // 
@@ -488,13 +362,13 @@
             deleteButton.UseVisualStyleBackColor = false;
             deleteButton.Click += deleteButton_Click;
             // 
-            // searchTextBox
+            // search
             // 
-            searchTextBox.Location = new Point(65, 195);
-            searchTextBox.Name = "searchTextBox";
-            searchTextBox.Size = new Size(220, 23);
-            searchTextBox.TabIndex = 33;
-            searchTextBox.TextChanged += searchTextBox_TextChanged;
+            search.Location = new Point(65, 195);
+            search.Name = "search";
+            search.Size = new Size(220, 23);
+            search.TabIndex = 33;
+            search.TextChanged += searchTextBox_TextChanged;
             // 
             // searchLabel
             // 
@@ -626,6 +500,132 @@
             label15.TabIndex = 45;
             label15.Text = "*";
             // 
+            // Column1
+            // 
+            Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Column1.HeaderText = "#";
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            Column1.Width = 39;
+            // 
+            // employee_ID
+            // 
+            employee_ID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_ID.HeaderText = "Employee No.";
+            employee_ID.MaxInputLength = 11;
+            employee_ID.Name = "employee_ID";
+            employee_ID.ReadOnly = true;
+            employee_ID.Width = 106;
+            // 
+            // employee_FirstName
+            // 
+            employee_FirstName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_FirstName.HeaderText = "First Name";
+            employee_FirstName.MaxInputLength = 50;
+            employee_FirstName.Name = "employee_FirstName";
+            employee_FirstName.ReadOnly = true;
+            employee_FirstName.Width = 89;
+            // 
+            // employee_MiddleName
+            // 
+            employee_MiddleName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_MiddleName.HeaderText = "Middle Name";
+            employee_MiddleName.MaxInputLength = 50;
+            employee_MiddleName.Name = "employee_MiddleName";
+            employee_MiddleName.ReadOnly = true;
+            employee_MiddleName.Width = 104;
+            // 
+            // employee_LastName
+            // 
+            employee_LastName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_LastName.HeaderText = "Last Name";
+            employee_LastName.MaxInputLength = 50;
+            employee_LastName.Name = "employee_LastName";
+            employee_LastName.ReadOnly = true;
+            employee_LastName.Width = 88;
+            // 
+            // employee_birthdate
+            // 
+            employee_birthdate.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            employee_birthdate.DefaultCellStyle = dataGridViewCellStyle4;
+            employee_birthdate.HeaderText = "Birthdate";
+            employee_birthdate.Name = "employee_birthdate";
+            employee_birthdate.ReadOnly = true;
+            employee_birthdate.Width = 80;
+            // 
+            // employee_addressBrgy
+            // 
+            employee_addressBrgy.HeaderText = "Brgy";
+            employee_addressBrgy.MaxInputLength = 50;
+            employee_addressBrgy.Name = "employee_addressBrgy";
+            employee_addressBrgy.ReadOnly = true;
+            // 
+            // employee_addressUnitNum
+            // 
+            employee_addressUnitNum.HeaderText = "Unit #";
+            employee_addressUnitNum.MaxInputLength = 50;
+            employee_addressUnitNum.Name = "employee_addressUnitNum";
+            employee_addressUnitNum.ReadOnly = true;
+            // 
+            // employee_City
+            // 
+            employee_City.HeaderText = "City";
+            employee_City.MaxInputLength = 50;
+            employee_City.Name = "employee_City";
+            employee_City.ReadOnly = true;
+            // 
+            // employee_Position
+            // 
+            employee_Position.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_Position.HeaderText = "Position";
+            employee_Position.MaxInputLength = 50;
+            employee_Position.Name = "employee_Position";
+            employee_Position.ReadOnly = true;
+            employee_Position.Width = 75;
+            // 
+            // employee_Department
+            // 
+            employee_Department.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_Department.HeaderText = "Department";
+            employee_Department.MaxInputLength = 50;
+            employee_Department.Name = "employee_Department";
+            employee_Department.ReadOnly = true;
+            employee_Department.Width = 95;
+            // 
+            // employee_Company
+            // 
+            employee_Company.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_Company.HeaderText = "Company Name";
+            employee_Company.MaxInputLength = 50;
+            employee_Company.Name = "employee_Company";
+            employee_Company.ReadOnly = true;
+            employee_Company.Width = 109;
+            // 
+            // employee_dataJoined
+            // 
+            employee_dataJoined.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle5.Format = "d";
+            dataGridViewCellStyle5.NullValue = null;
+            employee_dataJoined.DefaultCellStyle = dataGridViewCellStyle5;
+            employee_dataJoined.HeaderText = "Date Joined";
+            employee_dataJoined.Name = "employee_dataJoined";
+            employee_dataJoined.ReadOnly = true;
+            employee_dataJoined.Width = 86;
+            // 
+            // employee_DateJoined
+            // 
+            employee_DateJoined.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle6.Format = "d";
+            dataGridViewCellStyle6.NullValue = null;
+            employee_DateJoined.DefaultCellStyle = dataGridViewCellStyle6;
+            employee_DateJoined.HeaderText = "Date Left";
+            employee_DateJoined.Name = "employee_DateJoined";
+            employee_DateJoined.ReadOnly = true;
+            employee_DateJoined.Width = 73;
+            // 
             // EmployeeList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -643,7 +643,7 @@
             Controls.Add(label6);
             Controls.Add(clearButton);
             Controls.Add(searchLabel);
-            Controls.Add(searchTextBox);
+            Controls.Add(search);
             Controls.Add(deleteButton);
             Controls.Add(editButton);
             Controls.Add(saveButton);
@@ -652,28 +652,28 @@
             Controls.Add(label5);
             Controls.Add(employeeDateJoined);
             Controls.Add(label4);
-            Controls.Add(employeePositionText);
+            Controls.Add(employeePosition);
             Controls.Add(positionLabel);
-            Controls.Add(employeeDepartmentText);
+            Controls.Add(employeeDepartment);
             Controls.Add(departmentLabel);
-            Controls.Add(employeeCompanyText);
+            Controls.Add(employeeCompany);
             Controls.Add(companyLabel);
-            Controls.Add(addressBrgyText);
-            Controls.Add(addressCityText);
+            Controls.Add(addressBrgy);
+            Controls.Add(addressCity);
             Controls.Add(addressBrgyLabel);
             Controls.Add(addressCityLabel);
             Controls.Add(unitNumLabel);
-            Controls.Add(addressUnitNumText);
+            Controls.Add(addressUnitNum);
             Controls.Add(addressLabel);
             Controls.Add(birthdayPicker);
             Controls.Add(BirthdayLabel);
-            Controls.Add(LastNameText);
+            Controls.Add(lastName);
             Controls.Add(label3);
-            Controls.Add(MiddleNameText);
+            Controls.Add(middleName);
             Controls.Add(label2);
-            Controls.Add(FirstNameText);
+            Controls.Add(firstName);
             Controls.Add(label1);
-            Controls.Add(EmployeeIDText);
+            Controls.Add(employeeID);
             Controls.Add(EmployeeID_label);
             Name = "EmployeeList";
             Text = "EmployeeList";
@@ -686,28 +686,28 @@
         #endregion
 
         private Label EmployeeID_label;
-        private TextBox EmployeeIDText;
-        private TextBox FirstNameText;
+        private TextBox employeeID;
+        private TextBox firstName;
         private Label label1;
-        private TextBox MiddleNameText;
+        private TextBox middleName;
         private Label label2;
-        private TextBox LastNameText;
+        private TextBox lastName;
         private Label label3;
         private Label BirthdayLabel;
         private DateTimePicker birthdayPicker;
         private Label addressLabel;
-        private TextBox addressUnitNumText;
+        private TextBox addressUnitNum;
         private Label unitNumLabel;
         private Label addressCityLabel;
         private Label addressBrgyLabel;
-        private TextBox addressCityText;
-        private TextBox addressBrgyText;
+        private TextBox addressCity;
+        private TextBox addressBrgy;
         private Label label4;
-        private TextBox employeePositionText;
+        private TextBox employeePosition;
         private Label positionLabel;
-        private TextBox employeeDepartmentText;
+        private TextBox employeeDepartment;
         private Label departmentLabel;
-        private TextBox employeeCompanyText;
+        private TextBox employeeCompany;
         private Label companyLabel;
         private DateTimePicker employeeDateJoined;
         private DateTimePicker employeeDateLeft;
@@ -716,23 +716,9 @@
         private Button saveButton;
         private Button editButton;
         private Button deleteButton;
-        private TextBox searchTextBox;
+        private TextBox search;
         private Label searchLabel;
         private Button clearButton;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn EmployeeID;
-        private DataGridViewTextBoxColumn FirstName;
-        private DataGridViewTextBoxColumn MiddleName;
-        private DataGridViewTextBoxColumn LastName;
-        private DataGridViewTextBoxColumn birthdate;
-        private DataGridViewTextBoxColumn addressBrgy;
-        private DataGridViewTextBoxColumn addressUnitNum;
-        private DataGridViewTextBoxColumn City;
-        private DataGridViewTextBoxColumn employeePosition;
-        private DataGridViewTextBoxColumn employeeDepartment;
-        private DataGridViewTextBoxColumn employeeCompany;
-        private DataGridViewTextBoxColumn Column11;
-        private DataGridViewTextBoxColumn Column12;
         private Label label6;
         private Label label7;
         private Label label8;
@@ -743,5 +729,19 @@
         private Label label13;
         private Label label14;
         private Label label15;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn employee_ID;
+        private DataGridViewTextBoxColumn employee_FirstName;
+        private DataGridViewTextBoxColumn employee_MiddleName;
+        private DataGridViewTextBoxColumn employee_LastName;
+        private DataGridViewTextBoxColumn employee_birthdate;
+        private DataGridViewTextBoxColumn employee_addressBrgy;
+        private DataGridViewTextBoxColumn employee_addressUnitNum;
+        private DataGridViewTextBoxColumn employee_City;
+        private DataGridViewTextBoxColumn employee_Position;
+        private DataGridViewTextBoxColumn employee_Department;
+        private DataGridViewTextBoxColumn employee_Company;
+        private DataGridViewTextBoxColumn employee_dataJoined;
+        private DataGridViewTextBoxColumn employee_DateJoined;
     }
 }
