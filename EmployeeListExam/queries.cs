@@ -8,19 +8,19 @@ namespace EmployeeListExam
 {
      public class Queries
     {
-        public string selectQuery()
+        public string SelectQuery()
         {
             string select = "SELECT `EmployeeID`, `FirstName`, `MiddleName`, `LastName`, `birthday`, `addressUnitNum`, `addressBrgy`, `addressCity`, `employeePosition`, `employeeDepartment`, `employeeCompany`, `employeeDateJoined`, `employeeDateLeft` FROM `db_curd`";
             return select;
         }
 
-        public string insertQuery() {
+        public string InsertQuery() {
             string insert = "INSERT INTO `db_curd`(`EmployeeID`,`FirstName`,`MiddleName`,`LastName`,`birthday`,`addressUnitNum`,`addressBrgy`,`addressCity`,`employeePosition`,`employeeDepartment`,`employeeCompany`,`employeeDateJoined`,`employeeDateLeft`) " +
                                                     "VALUES (@EmployeeID, @FirstName, @MiddleName, @LastName, @birthday, @addressUnitNum, @addressBrgy, @addressCity, @employeePosition, @employeeDepartment, @employeeCompany, @employeeDateJoined, @employeeDateLeft)";
             return insert;
         }
 
-        public string updateQuery()
+        public string UpdateQuery()
         { //cannot change employeeID
             string update = "UPDATE `db_curd` SET `FirstName`=@FirstName,`MiddleName`=@MiddleName,`LastName`=@LastName,`birthday`=@birthday," +
                                                 "`addressUnitNum`=@addressUnitNum,`addressBrgy`=@addressBrgy,`addressCity`=@addressCity," +
@@ -30,13 +30,13 @@ namespace EmployeeListExam
             return update;
         }
 
-        public string deleteQuery()
+        public string DeleteQuery()
         {
             string delete = "DELETE From`db_curd` WHERE `EmployeeID`=@EmployeeID";
             return delete;
         }
 
-        public string searchQuery(string searchtext)
+        public string SearchQuery(string searchtext)
         {
             string search = "SELECT `EmployeeID`, `FirstName`, `MiddleName`, `LastName`, `birthday`, `addressUnitNum`, `addressBrgy`, `addressCity`, `employeePosition`, `employeeDepartment`, `employeeCompany`, `employeeDateJoined`, `employeeDateLeft` FROM `db_curd`" +
                  "WHERE EmployeeID like '%" + searchtext + "%'"+
