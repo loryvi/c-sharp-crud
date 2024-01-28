@@ -14,7 +14,7 @@ namespace EmployeeListExam
         int i = 0;
 
         Dbconnection dbconn = new Dbconnection(); //dbconnection class
-        Queries query = new Queries();
+        Queries Query = new Queries();
 
 
         public EmployeeList()
@@ -26,8 +26,8 @@ namespace EmployeeListExam
         private void EmployeeList_Load(object sender, EventArgs e)
         {
             LoadRecord();
-            editButton.Enabled = false;
-            deleteButton.Enabled = false;
+            EditButton.Enabled = false;
+            DeleteButton.Enabled = false;
 
         }
 
@@ -44,7 +44,7 @@ namespace EmployeeListExam
                 MessageBox.Show("Warning: " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             employeeRecordTable.Rows.Clear();
-            cmd = new MySqlCommand(query.selectQuery(), db_connect);
+            cmd = new MySqlCommand(Query.SelectQuery(), db_connect);
 
             dataRead = cmd.ExecuteReader();
             DATAREAD();
@@ -55,7 +55,7 @@ namespace EmployeeListExam
 
 
 
-        public void clearForm()
+        public void ClearForm()
         {
             employeeID.Clear();
             firstName.Clear();
@@ -71,78 +71,89 @@ namespace EmployeeListExam
             employeeDateJoined.Value = DateTime.Now;
             employeeDateLeft.Value = DateTime.Now;
 
-            saveButton.Visible = true;
-            editButton.Enabled = false;
-            deleteButton.Enabled = false;
+            SaveButton.Visible = true;
+            EditButton.Enabled = false;
+            DeleteButton.Enabled = false;
         }
 
 
-        //save and save the input data
-        private void saveButton_Click(object sender, EventArgs e)
+        
+        private void SaveButton_Click(object sender, EventArgs e)
         {
 
-            if (true)
+            try
             {
-                DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
-                                                    addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
-                                                    employeePosition.Text, employeeDepartment.Text, employeeCompany.Text);
-            }
-            else
-            {
-
-                db_connect.Open();
-                cmd = new MySqlCommand(query.insertQuery(), db_connect);
-                cmd.Parameters.Clear();
-
-                SAVETODATABASE();
-
-                if (i > 0)
+                if ((DataValidation.CheckEmployeeIDExist(employeeID.Text)))
+                {
+                    MessageBox.Show("Employee ID already exist. ", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    employeeID.Clear();
+                    return;
+                }
+                else if (DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
+                                                         addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
+                                                         employeePosition.Text, employeeDepartment.Text, employeeCompany.Text))
                 {
 
-                    MessageBox.Show("Record Save Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show("Record Save Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    db_connect.Open();
+                    cmd = new MySqlCommand(Query.InsertQuery(), db_connect);
+                    cmd.Parameters.Clear();
+
+                    SAVETODATABASE();
+
+                    if (i > 0)
+                    {
+
+                        MessageBox.Show("Record Save Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Record Save Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
+                    db_connect.Close();
+                    LoadRecord();
+                    ClearForm();
                 }
-
-                db_connect.Close();
-                LoadRecord();
-                clearForm();
             }
-
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Warning: " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
 
 
 
-        private void editButton_Click(object sender, EventArgs e)
+        private void EditButton_Click(object sender, EventArgs e)
         {
-            editButton.Enabled = true;
+            EditButton.Enabled = true;
 
             cmd.Parameters.Clear();
 
 
-            if ((employeeID.Text == string.Empty) ||
-               (firstName.Text == string.Empty) ||
-               (lastName.Text == string.Empty) ||
-               (addressUnitNum.Text == string.Empty) ||
-               (addressBrgy.Text == string.Empty) ||
-               (addressCity.Text == string.Empty) ||
-               (employeePosition.Text == string.Empty) ||
-               (employeeDepartment.Text == string.Empty) ||
-               (employeeCompany.Text == string.Empty))
+            if (DataValidation.CheckEmployeeIDExist(employeeID.Text))
             {
-                MessageBox.Show("Warning: Fill Required Box!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Employee ID already exist. ", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                employeeID.Clear();
+                return;
+            }
+            else if (DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
+                                                     addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
+                                                     employeePosition.Text, employeeDepartment.Text, employeeCompany.Text))
+            {
 
                 return;
             }
+            
             else
             {
-                //cannot edit EmployeeID
+
                 db_connect.Open();
-                cmd = new MySqlCommand(query.updateQuery(), db_connect);
+                cmd = new MySqlCommand(Query.UpdateQuery(), db_connect);
                 SAVETODATABASE();
 
                 if (i > 0)
@@ -156,17 +167,17 @@ namespace EmployeeListExam
 
                 db_connect.Close();
                 LoadRecord();
-                clearForm();
+                ClearForm();
             }
 
         }
 
 
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
 
             db_connect.Open();
-            cmd = new MySqlCommand(query.deleteQuery(), db_connect);
+            cmd = new MySqlCommand(Query.DeleteQuery(), db_connect);
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@EmployeeID", employeeID.Text); //get EmployeeIDText - input and run to query
                                                                              //delete if employeeID match   
@@ -184,18 +195,18 @@ namespace EmployeeListExam
 
             db_connect.Close();
             LoadRecord();
-            clearForm();
+            ClearForm();
 
 
         }
 
-        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
             employeeRecordTable.Rows.Clear();
 
             db_connect.Open();
             employeeRecordTable.Rows.Clear();
-            cmd = new MySqlCommand(query.searchQuery(search.Text), db_connect);
+            cmd = new MySqlCommand(Query.SearchQuery(search.Text), db_connect);
 
             dataRead = cmd.ExecuteReader();
             DATAREAD();
@@ -207,12 +218,12 @@ namespace EmployeeListExam
 
         
 
-        private void employeeRecordTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void EmployeeRecordTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            saveButton.Visible = false;
-            editButton.Enabled = true;
-            deleteButton.Enabled = true;
+            SaveButton.Visible = false;
+            EditButton.Enabled = true;
+            DeleteButton.Enabled = true;
 
             employeeID.Text = employeeRecordTable.CurrentRow.Cells[1].Value.ToString();
             firstName.Text = employeeRecordTable.CurrentRow.Cells[2].Value.ToString();
@@ -232,11 +243,11 @@ namespace EmployeeListExam
 
 
 
-        private void clearButton_Click(object sender, EventArgs e)
+        private void ClearButton_Click(object sender, EventArgs e)
         {
-            clearForm();
-            saveButton.Visible = true;
-            saveButton.Enabled = true;
+            ClearForm();
+            SaveButton.Visible = true;
+            SaveButton.Enabled = true;
         }
 
         private void DATAREAD()

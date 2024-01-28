@@ -59,22 +59,6 @@
             employeeDateLeft = new DateTimePicker();
             label5 = new Label();
             employeeRecordTable = new DataGridView();
-            saveButton = new Button();
-            editButton = new Button();
-            deleteButton = new Button();
-            search = new TextBox();
-            searchLabel = new Label();
-            clearButton = new Button();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
-            label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
-            label12 = new Label();
-            label13 = new Label();
-            label14 = new Label();
-            label15 = new Label();
             Column1 = new DataGridViewTextBoxColumn();
             employee_ID = new DataGridViewTextBoxColumn();
             employee_FirstName = new DataGridViewTextBoxColumn();
@@ -89,6 +73,22 @@
             employee_Company = new DataGridViewTextBoxColumn();
             employee_dataJoined = new DataGridViewTextBoxColumn();
             employee_DateJoined = new DataGridViewTextBoxColumn();
+            SaveButton = new Button();
+            EditButton = new Button();
+            DeleteButton = new Button();
+            search = new TextBox();
+            searchLabel = new Label();
+            ClearButton = new Button();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            label14 = new Label();
+            label15 = new Label();
             ((System.ComponentModel.ISupportInitialize)employeeRecordTable).BeginInit();
             SuspendLayout();
             // 
@@ -323,44 +323,170 @@
             employeeRecordTable.RowHeadersVisible = false;
             employeeRecordTable.Size = new Size(779, 259);
             employeeRecordTable.TabIndex = 29;
-            employeeRecordTable.CellClick += employeeRecordTable_CellClick;
+            employeeRecordTable.CellClick += EmployeeRecordTable_CellClick;
             // 
-            // saveButton
+            // Column1
             // 
-            saveButton.BackColor = Color.DeepSkyBlue;
-            saveButton.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            saveButton.Location = new Point(437, 176);
-            saveButton.Name = "saveButton";
-            saveButton.Size = new Size(113, 42);
-            saveButton.TabIndex = 30;
-            saveButton.Text = "Save";
-            saveButton.UseVisualStyleBackColor = false;
-            saveButton.Click += saveButton_Click;
+            Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            Column1.HeaderText = "#";
+            Column1.Name = "Column1";
+            Column1.ReadOnly = true;
+            Column1.Width = 39;
             // 
-            // editButton
+            // employee_ID
             // 
-            editButton.BackColor = Color.DarkOrange;
-            editButton.Font = new Font("Century Gothic", 11.25F);
-            editButton.Location = new Point(556, 176);
-            editButton.Name = "editButton";
-            editButton.Size = new Size(113, 42);
-            editButton.TabIndex = 31;
-            editButton.Text = "Update";
-            editButton.UseVisualStyleBackColor = false;
-            editButton.Click += editButton_Click;
+            employee_ID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_ID.HeaderText = "Employee No.";
+            employee_ID.MaxInputLength = 11;
+            employee_ID.Name = "employee_ID";
+            employee_ID.ReadOnly = true;
+            employee_ID.Width = 97;
             // 
-            // deleteButton
+            // employee_FirstName
             // 
-            deleteButton.BackColor = Color.Red;
-            deleteButton.Font = new Font("Century Gothic", 11.25F);
-            deleteButton.ForeColor = SystemColors.Window;
-            deleteButton.Location = new Point(675, 176);
-            deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(113, 42);
-            deleteButton.TabIndex = 32;
-            deleteButton.Text = "Delete";
-            deleteButton.UseVisualStyleBackColor = false;
-            deleteButton.Click += deleteButton_Click;
+            employee_FirstName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_FirstName.HeaderText = "First Name";
+            employee_FirstName.MaxInputLength = 50;
+            employee_FirstName.Name = "employee_FirstName";
+            employee_FirstName.ReadOnly = true;
+            employee_FirstName.Width = 82;
+            // 
+            // employee_MiddleName
+            // 
+            employee_MiddleName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_MiddleName.HeaderText = "Middle Name";
+            employee_MiddleName.MaxInputLength = 50;
+            employee_MiddleName.Name = "employee_MiddleName";
+            employee_MiddleName.ReadOnly = true;
+            employee_MiddleName.Width = 96;
+            // 
+            // employee_LastName
+            // 
+            employee_LastName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_LastName.HeaderText = "Last Name";
+            employee_LastName.MaxInputLength = 50;
+            employee_LastName.Name = "employee_LastName";
+            employee_LastName.ReadOnly = true;
+            employee_LastName.Width = 81;
+            // 
+            // employee_birthdate
+            // 
+            employee_birthdate.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            employee_birthdate.DefaultCellStyle = dataGridViewCellStyle4;
+            employee_birthdate.HeaderText = "Birthdate";
+            employee_birthdate.Name = "employee_birthdate";
+            employee_birthdate.ReadOnly = true;
+            employee_birthdate.Width = 80;
+            // 
+            // employee_addressBrgy
+            // 
+            employee_addressBrgy.HeaderText = "Brgy";
+            employee_addressBrgy.MaxInputLength = 50;
+            employee_addressBrgy.Name = "employee_addressBrgy";
+            employee_addressBrgy.ReadOnly = true;
+            // 
+            // employee_addressUnitNum
+            // 
+            employee_addressUnitNum.HeaderText = "Unit #";
+            employee_addressUnitNum.MaxInputLength = 50;
+            employee_addressUnitNum.Name = "employee_addressUnitNum";
+            employee_addressUnitNum.ReadOnly = true;
+            // 
+            // employee_City
+            // 
+            employee_City.HeaderText = "City";
+            employee_City.MaxInputLength = 50;
+            employee_City.Name = "employee_City";
+            employee_City.ReadOnly = true;
+            // 
+            // employee_Position
+            // 
+            employee_Position.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_Position.HeaderText = "Position";
+            employee_Position.MaxInputLength = 50;
+            employee_Position.Name = "employee_Position";
+            employee_Position.ReadOnly = true;
+            employee_Position.Width = 75;
+            // 
+            // employee_Department
+            // 
+            employee_Department.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_Department.HeaderText = "Department";
+            employee_Department.MaxInputLength = 50;
+            employee_Department.Name = "employee_Department";
+            employee_Department.ReadOnly = true;
+            employee_Department.Width = 95;
+            // 
+            // employee_Company
+            // 
+            employee_Company.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            employee_Company.HeaderText = "Company Name";
+            employee_Company.MaxInputLength = 50;
+            employee_Company.Name = "employee_Company";
+            employee_Company.ReadOnly = true;
+            employee_Company.Width = 109;
+            // 
+            // employee_dataJoined
+            // 
+            employee_dataJoined.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.BottomRight;
+            dataGridViewCellStyle5.Format = "d";
+            dataGridViewCellStyle5.NullValue = null;
+            employee_dataJoined.DefaultCellStyle = dataGridViewCellStyle5;
+            employee_dataJoined.HeaderText = "Date Joined";
+            employee_dataJoined.Name = "employee_dataJoined";
+            employee_dataJoined.ReadOnly = true;
+            employee_dataJoined.Width = 86;
+            // 
+            // employee_DateJoined
+            // 
+            employee_DateJoined.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle6.Format = "d";
+            dataGridViewCellStyle6.NullValue = null;
+            employee_DateJoined.DefaultCellStyle = dataGridViewCellStyle6;
+            employee_DateJoined.HeaderText = "Date Left";
+            employee_DateJoined.Name = "employee_DateJoined";
+            employee_DateJoined.ReadOnly = true;
+            employee_DateJoined.Width = 73;
+            // 
+            // SaveButton
+            // 
+            SaveButton.BackColor = Color.DeepSkyBlue;
+            SaveButton.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            SaveButton.Location = new Point(437, 176);
+            SaveButton.Name = "SaveButton";
+            SaveButton.Size = new Size(113, 42);
+            SaveButton.TabIndex = 30;
+            SaveButton.Text = "Save";
+            SaveButton.UseVisualStyleBackColor = false;
+            SaveButton.Click += SaveButton_Click;
+            // 
+            // EditButton
+            // 
+            EditButton.BackColor = Color.DarkOrange;
+            EditButton.Font = new Font("Century Gothic", 11.25F);
+            EditButton.Location = new Point(556, 176);
+            EditButton.Name = "EditButton";
+            EditButton.Size = new Size(113, 42);
+            EditButton.TabIndex = 31;
+            EditButton.Text = "Update";
+            EditButton.UseVisualStyleBackColor = false;
+            EditButton.Click += EditButton_Click;
+            // 
+            // DeleteButton
+            // 
+            DeleteButton.BackColor = Color.Red;
+            DeleteButton.Font = new Font("Century Gothic", 11.25F);
+            DeleteButton.ForeColor = SystemColors.Window;
+            DeleteButton.Location = new Point(675, 176);
+            DeleteButton.Name = "DeleteButton";
+            DeleteButton.Size = new Size(113, 42);
+            DeleteButton.TabIndex = 32;
+            DeleteButton.Text = "Delete";
+            DeleteButton.UseVisualStyleBackColor = false;
+            DeleteButton.Click += DeleteButton_Click;
             // 
             // search
             // 
@@ -368,7 +494,7 @@
             search.Name = "search";
             search.Size = new Size(220, 23);
             search.TabIndex = 33;
-            search.TextChanged += searchTextBox_TextChanged;
+            search.TextChanged += SearchTextBox_TextChanged;
             // 
             // searchLabel
             // 
@@ -379,16 +505,16 @@
             searchLabel.TabIndex = 34;
             searchLabel.Text = "Search";
             // 
-            // clearButton
+            // ClearButton
             // 
-            clearButton.Font = new Font("Century Gothic", 11.25F);
-            clearButton.Location = new Point(369, 176);
-            clearButton.Name = "clearButton";
-            clearButton.Size = new Size(62, 42);
-            clearButton.TabIndex = 35;
-            clearButton.Text = "Clear";
-            clearButton.UseVisualStyleBackColor = true;
-            clearButton.Click += clearButton_Click;
+            ClearButton.Font = new Font("Century Gothic", 11.25F);
+            ClearButton.Location = new Point(369, 176);
+            ClearButton.Name = "ClearButton";
+            ClearButton.Size = new Size(62, 42);
+            ClearButton.TabIndex = 35;
+            ClearButton.Text = "Clear";
+            ClearButton.UseVisualStyleBackColor = true;
+            ClearButton.Click += ClearButton_Click;
             // 
             // label6
             // 
@@ -500,132 +626,6 @@
             label15.TabIndex = 45;
             label15.Text = "*";
             // 
-            // Column1
-            // 
-            Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            Column1.HeaderText = "#";
-            Column1.Name = "Column1";
-            Column1.ReadOnly = true;
-            Column1.Width = 39;
-            // 
-            // employee_ID
-            // 
-            employee_ID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            employee_ID.HeaderText = "Employee No.";
-            employee_ID.MaxInputLength = 11;
-            employee_ID.Name = "employee_ID";
-            employee_ID.ReadOnly = true;
-            employee_ID.Width = 106;
-            // 
-            // employee_FirstName
-            // 
-            employee_FirstName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            employee_FirstName.HeaderText = "First Name";
-            employee_FirstName.MaxInputLength = 50;
-            employee_FirstName.Name = "employee_FirstName";
-            employee_FirstName.ReadOnly = true;
-            employee_FirstName.Width = 89;
-            // 
-            // employee_MiddleName
-            // 
-            employee_MiddleName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            employee_MiddleName.HeaderText = "Middle Name";
-            employee_MiddleName.MaxInputLength = 50;
-            employee_MiddleName.Name = "employee_MiddleName";
-            employee_MiddleName.ReadOnly = true;
-            employee_MiddleName.Width = 104;
-            // 
-            // employee_LastName
-            // 
-            employee_LastName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            employee_LastName.HeaderText = "Last Name";
-            employee_LastName.MaxInputLength = 50;
-            employee_LastName.Name = "employee_LastName";
-            employee_LastName.ReadOnly = true;
-            employee_LastName.Width = 88;
-            // 
-            // employee_birthdate
-            // 
-            employee_birthdate.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.Format = "d";
-            dataGridViewCellStyle4.NullValue = null;
-            employee_birthdate.DefaultCellStyle = dataGridViewCellStyle4;
-            employee_birthdate.HeaderText = "Birthdate";
-            employee_birthdate.Name = "employee_birthdate";
-            employee_birthdate.ReadOnly = true;
-            employee_birthdate.Width = 80;
-            // 
-            // employee_addressBrgy
-            // 
-            employee_addressBrgy.HeaderText = "Brgy";
-            employee_addressBrgy.MaxInputLength = 50;
-            employee_addressBrgy.Name = "employee_addressBrgy";
-            employee_addressBrgy.ReadOnly = true;
-            // 
-            // employee_addressUnitNum
-            // 
-            employee_addressUnitNum.HeaderText = "Unit #";
-            employee_addressUnitNum.MaxInputLength = 50;
-            employee_addressUnitNum.Name = "employee_addressUnitNum";
-            employee_addressUnitNum.ReadOnly = true;
-            // 
-            // employee_City
-            // 
-            employee_City.HeaderText = "City";
-            employee_City.MaxInputLength = 50;
-            employee_City.Name = "employee_City";
-            employee_City.ReadOnly = true;
-            // 
-            // employee_Position
-            // 
-            employee_Position.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            employee_Position.HeaderText = "Position";
-            employee_Position.MaxInputLength = 50;
-            employee_Position.Name = "employee_Position";
-            employee_Position.ReadOnly = true;
-            employee_Position.Width = 75;
-            // 
-            // employee_Department
-            // 
-            employee_Department.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            employee_Department.HeaderText = "Department";
-            employee_Department.MaxInputLength = 50;
-            employee_Department.Name = "employee_Department";
-            employee_Department.ReadOnly = true;
-            employee_Department.Width = 95;
-            // 
-            // employee_Company
-            // 
-            employee_Company.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            employee_Company.HeaderText = "Company Name";
-            employee_Company.MaxInputLength = 50;
-            employee_Company.Name = "employee_Company";
-            employee_Company.ReadOnly = true;
-            employee_Company.Width = 109;
-            // 
-            // employee_dataJoined
-            // 
-            employee_dataJoined.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.BottomRight;
-            dataGridViewCellStyle5.Format = "d";
-            dataGridViewCellStyle5.NullValue = null;
-            employee_dataJoined.DefaultCellStyle = dataGridViewCellStyle5;
-            employee_dataJoined.HeaderText = "Date Joined";
-            employee_dataJoined.Name = "employee_dataJoined";
-            employee_dataJoined.ReadOnly = true;
-            employee_dataJoined.Width = 86;
-            // 
-            // employee_DateJoined
-            // 
-            employee_DateJoined.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle6.Format = "d";
-            dataGridViewCellStyle6.NullValue = null;
-            employee_DateJoined.DefaultCellStyle = dataGridViewCellStyle6;
-            employee_DateJoined.HeaderText = "Date Left";
-            employee_DateJoined.Name = "employee_DateJoined";
-            employee_DateJoined.ReadOnly = true;
-            employee_DateJoined.Width = 73;
-            // 
             // EmployeeList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -641,12 +641,12 @@
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label6);
-            Controls.Add(clearButton);
+            Controls.Add(ClearButton);
             Controls.Add(searchLabel);
             Controls.Add(search);
-            Controls.Add(deleteButton);
-            Controls.Add(editButton);
-            Controls.Add(saveButton);
+            Controls.Add(DeleteButton);
+            Controls.Add(EditButton);
+            Controls.Add(SaveButton);
             Controls.Add(employeeRecordTable);
             Controls.Add(employeeDateLeft);
             Controls.Add(label5);
@@ -713,12 +713,12 @@
         private DateTimePicker employeeDateLeft;
         private Label label5;
         private DataGridView employeeRecordTable;
-        private Button saveButton;
-        private Button editButton;
-        private Button deleteButton;
+        private Button SaveButton;
+        private Button EditButton;
+        private Button DeleteButton;
         private TextBox search;
         private Label searchLabel;
-        private Button clearButton;
+        private Button ClearButton;
         private Label label6;
         private Label label7;
         private Label label8;
