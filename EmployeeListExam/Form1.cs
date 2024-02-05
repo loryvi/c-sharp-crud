@@ -1,21 +1,17 @@
 using System;
 using MySql.Data.MySqlClient;
-
-
 namespace EmployeeListExam
 {
 
     public partial class EmployeeList : Form
     {
-
-        MySqlConnection db_connect;
+        readonly MySqlConnection db_connect;
         MySqlCommand cmd;
         MySqlDataReader dataRead;
         int i = 0;
 
-        Dbconnection dbconn = new Dbconnection(); //dbconnection class
-        Queries Query = new Queries();
-
+        readonly Dbconnection dbconn = new Dbconnection(); //dbconnection class
+        readonly Queries Query = new Queries();
 
         public EmployeeList()
         {
@@ -44,7 +40,7 @@ namespace EmployeeListExam
                 MessageBox.Show("Warning: " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             employeeRecordTable.Rows.Clear();
-            cmd = new MySqlCommand(Query.SelectQuery(), db_connect);
+            cmd = new MySqlCommand(Queries.SelectQuery(), db_connect);
 
             dataRead = cmd.ExecuteReader();
             DATAREAD();
@@ -83,23 +79,26 @@ namespace EmployeeListExam
 
             try
             {
-                if ((DataValidation.CheckEmployeeIDExist(employeeID.Text)))
+                if (DataValidation.CheckEmployeeIDExist(employeeID.Text))
                 {
                     MessageBox.Show("Employee ID already exist. ", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     employeeID.Clear();
                     return;
                 }
-                else if (DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
+                else if ((DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
                                                          addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
-                                                         employeePosition.Text, employeeDepartment.Text, employeeCompany.Text))
+                                                         employeePosition.Text, employeeDepartment.Text, employeeCompany.Text)) != "")
                 {
 
+                    MessageBox.Show(DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
+                                                         addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
+                                                         employeePosition.Text, employeeDepartment.Text, employeeCompany.Text), "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 else
                 {
                     db_connect.Open();
-                    cmd = new MySqlCommand(Query.InsertQuery(), db_connect);
+                    cmd = new MySqlCommand(Queries.InsertQuery(), db_connect);
                     cmd.Parameters.Clear();
 
                     SAVETODATABASE();
@@ -141,19 +140,21 @@ namespace EmployeeListExam
                 employeeID.Clear();
                 return;
             }
-            else if (DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
-                                                     addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
-                                                     employeePosition.Text, employeeDepartment.Text, employeeCompany.Text))
+            else if ((DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
+                                                        addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
+                                                        employeePosition.Text, employeeDepartment.Text, employeeCompany.Text)) != "")
             {
 
+                MessageBox.Show(DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
+                                                     addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
+                                                     employeePosition.Text, employeeDepartment.Text, employeeCompany.Text), "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
             else
             {
 
                 db_connect.Open();
-                cmd = new MySqlCommand(Query.UpdateQuery(), db_connect);
+                cmd = new MySqlCommand(Queries.UpdateQuery(), db_connect);
                 SAVETODATABASE();
 
                 if (i > 0)
@@ -177,7 +178,7 @@ namespace EmployeeListExam
         {
 
             db_connect.Open();
-            cmd = new MySqlCommand(Query.DeleteQuery(), db_connect);
+            cmd = new MySqlCommand(Queries.DeleteQuery(), db_connect);
             cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@EmployeeID", employeeID.Text); //get EmployeeIDText - input and run to query
                                                                              //delete if employeeID match   
@@ -206,7 +207,7 @@ namespace EmployeeListExam
 
             db_connect.Open();
             employeeRecordTable.Rows.Clear();
-            cmd = new MySqlCommand(Query.SearchQuery(search.Text), db_connect);
+            cmd = new MySqlCommand(Queries.SearchQuery(search.Text), db_connect);
 
             dataRead = cmd.ExecuteReader();
             DATAREAD();
@@ -214,9 +215,6 @@ namespace EmployeeListExam
             dataRead.Close();
             db_connect.Close();
         }
-
-
-        
 
         private void EmployeeRecordTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -295,10 +293,8 @@ namespace EmployeeListExam
             i = cmd.ExecuteNonQuery();
         }
 
-
     }
 
 
     
     }
-
