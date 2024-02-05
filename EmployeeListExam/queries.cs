@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EmployeeListExam
+﻿namespace EmployeeListExam
 {
-     public class Queries
+    public class Queries
     {
         public static string SelectQuery()
         {
