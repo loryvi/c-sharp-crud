@@ -8,21 +8,21 @@ namespace EmployeeListExam
 {
      public class Queries
     {
-        public string SelectQuery()
+        public static string SelectQuery()
         {
-            string select = "SELECT `EmployeeID`, `FirstName`, `MiddleName`, `LastName`, `birthday`, `addressUnitNum`, `addressBrgy`, `addressCity`, `employeePosition`, `employeeDepartment`, `employeeCompany`, `employeeDateJoined`, `employeeDateLeft` FROM `db_curd`";
+            const string select = "SELECT `EmployeeID`, `FirstName`, `MiddleName`, `LastName`, `birthday`, `addressUnitNum`, `addressBrgy`, `addressCity`, `employeePosition`, `employeeDepartment`, `employeeCompany`, `employeeDateJoined`, `employeeDateLeft` FROM `db_curd`";
             return select;
         }
 
-        public string InsertQuery() {
-            string insert = "INSERT INTO `db_curd`(`EmployeeID`,`FirstName`,`MiddleName`,`LastName`,`birthday`,`addressUnitNum`,`addressBrgy`,`addressCity`,`employeePosition`,`employeeDepartment`,`employeeCompany`,`employeeDateJoined`,`employeeDateLeft`) " +
+        public static string InsertQuery() {
+            const string insert = "INSERT INTO `db_curd`(`EmployeeID`,`FirstName`,`MiddleName`,`LastName`,`birthday`,`addressUnitNum`,`addressBrgy`,`addressCity`,`employeePosition`,`employeeDepartment`,`employeeCompany`,`employeeDateJoined`,`employeeDateLeft`) " +
                                                     "VALUES (@EmployeeID, @FirstName, @MiddleName, @LastName, @birthday, @addressUnitNum, @addressBrgy, @addressCity, @employeePosition, @employeeDepartment, @employeeCompany, @employeeDateJoined, @employeeDateLeft)";
             return insert;
         }
 
-        public string UpdateQuery()
+        public static string UpdateQuery()
         { //cannot change employeeID
-            string update = "UPDATE `db_curd` SET `FirstName`=@FirstName,`MiddleName`=@MiddleName,`LastName`=@LastName,`birthday`=@birthday," +
+            const string update = "UPDATE `db_curd` SET `FirstName`=@FirstName,`MiddleName`=@MiddleName,`LastName`=@LastName,`birthday`=@birthday," +
                                                 "`addressUnitNum`=@addressUnitNum,`addressBrgy`=@addressBrgy,`addressCity`=@addressCity," +
                                                 "`employeePosition`=@employeePosition,`employeeDepartment`=@employeeDepartment,`employeeCompany`=@employeeCompany," +
                                                 "`employeeDateJoined`=@employeeDateJoined,`employeeDateLeft`=@employeeDateLeft " +
@@ -30,13 +30,13 @@ namespace EmployeeListExam
             return update;
         }
 
-        public string DeleteQuery()
+        public static string DeleteQuery()
         {
-            string delete = "DELETE From`db_curd` WHERE `EmployeeID`=@EmployeeID";
+            const string delete = "DELETE From`db_curd` WHERE `EmployeeID`=@EmployeeID";
             return delete;
         }
 
-        public string SearchQuery(string searchtext)
+        public static string SearchQuery(string searchtext)
         {
             string search = "SELECT `EmployeeID`, `FirstName`, `MiddleName`, `LastName`, `birthday`, `addressUnitNum`, `addressBrgy`, `addressCity`, `employeePosition`, `employeeDepartment`, `employeeCompany`, `employeeDateJoined`, `employeeDateLeft` FROM `db_curd`" +
                  "WHERE EmployeeID like '%" + searchtext + "%'"+
@@ -54,7 +54,6 @@ namespace EmployeeListExam
                  "or employeeDateLeft like '%" + searchtext + "%'";
             return search;
         }
-
         
     }
 }
