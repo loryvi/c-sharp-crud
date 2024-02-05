@@ -11,7 +11,7 @@ namespace EmployeeListExam
         int i = 0;
 
         readonly Dbconnection dbconn = new Dbconnection(); //dbconnection class
-        readonly Queries Query = new Queries();
+        readonly Queries query = new Queries();
 
         public EmployeeList()
         {
@@ -79,7 +79,7 @@ namespace EmployeeListExam
 
             try
             {
-                if (DataValidation.CheckEmployeeIDExist(employeeID.Text))
+                if (!DataValidation.CheckEmployeeIDExist(employeeID.Text)
                 {
                     MessageBox.Show("Employee ID already exist. ", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     employeeID.Clear();
