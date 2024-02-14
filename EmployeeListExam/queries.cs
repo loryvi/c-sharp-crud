@@ -49,5 +49,10 @@
             return search;
         }
         
+        public static string SearchDuplicate (string EmpID)
+        {
+            string search = "SELECT COUNT(1) FROM `db_curd` WHERE EmployeeID =" +EmpID+"";
+            return search;
+        }
     }
 }

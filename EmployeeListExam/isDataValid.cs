@@ -6,32 +6,23 @@ namespace EmployeeListExam
      class DataValidation
     {
 
-        public static bool CheckEmployeeIDExist(string searchEmployeeID)
-        {
-
-            bool duplicate;
+        public static int CheckEmployeeIDExist(string searchEmployeeID){
+            int duplicate;
             MySqlConnection db_connect;
             MySqlCommand cmd;
 
             Dbconnection dbconn = new Dbconnection();
-
+             
             db_connect = new MySqlConnection(dbconn.dbconnect());
 
 
             db_connect.Open();
 
-            cmd = new MySqlCommand("SELECT EXISTS(SELECT COUNT(*) FROM `db_curd` WHERE EmployeeID='" + searchEmployeeID + "')",
+            cmd = new MySqlCommand(Queries.SearchDuplicate(searchEmployeeID),
                                    db_connect);
-            cmd.Parameters.Clear();
-            object j = cmd.ExecuteScalar();
-            if (Convert.ToInt32(j) > 0)
-            {
-                duplicate = false;
-            }
-            else
-            {
-                duplicate = true;
-            }
+            object j = cmd.ExecuteReader();
+            duplicate = Convert.ToInt32(j);
+            Console.WriteLine("Duplicate: " + duplicate);
             db_connect.Close();
             return duplicate;
         }

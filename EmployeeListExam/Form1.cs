@@ -11,7 +11,6 @@ namespace EmployeeListExam
         int i = 0;
 
         readonly Dbconnection dbconn = new Dbconnection(); //dbconnection class
-        readonly Queries query = new Queries();
 
         public EmployeeList()
         {
@@ -77,9 +76,7 @@ namespace EmployeeListExam
         private void SaveButton_Click(object sender, EventArgs e)
         {
 
-            try
-            {
-                if (!DataValidation.CheckEmployeeIDExist(employeeID.Text)
+                if (DataValidation.CheckEmployeeIDExist(employeeID.Text) == 1)
                 {
                     MessageBox.Show("Employee ID already exist. ", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     employeeID.Clear();
@@ -117,11 +114,11 @@ namespace EmployeeListExam
                     LoadRecord();
                     ClearForm();
                 }
-            }
+          /*  
             catch (Exception ex)
             {
                 MessageBox.Show("Warning: " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            }*/
         }
 
 
@@ -134,7 +131,7 @@ namespace EmployeeListExam
             cmd.Parameters.Clear();
 
 
-            if (DataValidation.CheckEmployeeIDExist(employeeID.Text))
+            if (DataValidation.CheckEmployeeIDExist(employeeID.Text) > 1)
             {
                 MessageBox.Show("Employee ID already exist. ", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 employeeID.Clear();
