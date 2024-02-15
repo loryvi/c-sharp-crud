@@ -7,13 +7,11 @@
             const string select = "SELECT `EmployeeID`, `FirstName`, `MiddleName`, `LastName`, `birthday`, `addressUnitNum`, `addressBrgy`, `addressCity`, `employeePosition`, `employeeDepartment`, `employeeCompany`, `employeeDateJoined`, `employeeDateLeft` FROM `db_curd`";
             return select;
         }
-
         public static string InsertQuery() {
             const string insert = "INSERT INTO `db_curd`(`EmployeeID`,`FirstName`,`MiddleName`,`LastName`,`birthday`,`addressUnitNum`,`addressBrgy`,`addressCity`,`employeePosition`,`employeeDepartment`,`employeeCompany`,`employeeDateJoined`,`employeeDateLeft`) " +
                                                     "VALUES (@EmployeeID, @FirstName, @MiddleName, @LastName, @birthday, @addressUnitNum, @addressBrgy, @addressCity, @employeePosition, @employeeDepartment, @employeeCompany, @employeeDateJoined, @employeeDateLeft)";
             return insert;
         }
-
         public static string UpdateQuery()
         { //cannot change employeeID
             const string update = "UPDATE `db_curd` SET `FirstName`=@FirstName,`MiddleName`=@MiddleName,`LastName`=@LastName,`birthday`=@birthday," +
@@ -23,13 +21,11 @@
                                                 "WHERE `EmployeeID`=@EmployeeID";
             return update;
         }
-
         public static string DeleteQuery()
         { 
             const string delete = "DELETE From`db_curd` WHERE `EmployeeID`=@EmployeeID";
             return delete;
         }
-
         public static string SearchQuery(string searchtext)
         {
             string search = "SELECT `EmployeeID`, `FirstName`, `MiddleName`, `LastName`, `birthday`, `addressUnitNum`, `addressBrgy`, `addressCity`, `employeePosition`, `employeeDepartment`, `employeeCompany`, `employeeDateJoined`, `employeeDateLeft` FROM `db_curd`" +
@@ -47,11 +43,10 @@
                 "or employeeDateJoined like '%" + searchtext + "%'" +
                  "or employeeDateLeft like '%" + searchtext + "%'";
             return search;
-        }
-        
+        }        
         public static string SearchDuplicate (string EmpID)
         {
-            string search = "SELECT COUNT(1) FROM `db_curd` WHERE EmployeeID =" +EmpID+"";
+            string search = "SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END FROM `db_curd` WHERE EmployeeID = '"+ EmpID +"'";
             return search;
         }
     }

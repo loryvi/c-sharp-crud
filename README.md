@@ -49,7 +49,7 @@ A CRUD made of  of a C# .Net Forms.
 - Form1.resx
   - [isDataValid.cs](/isDataValid.cs)
   - dbconnection.cs
-  - [queries.cs](/queries.cs)
+  - [queries.cs](/EmployeeListExam/queries.cs)
 
 
 ### Screenshot

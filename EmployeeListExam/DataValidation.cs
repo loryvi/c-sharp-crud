@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using System;
 
 namespace EmployeeListExam
@@ -6,31 +7,20 @@ namespace EmployeeListExam
      class DataValidation
     {
 
-        public static int CheckEmployeeIDExist(string searchEmployeeID){
-            int duplicate;
-            MySqlConnection db_connect;
-            MySqlCommand cmd;
-
+        public static bool CheckEmployeeIDExist(string searchEmployeeID){
+            int result;
             Dbconnection dbconn = new Dbconnection();
-             
-            db_connect = new MySqlConnection(dbconn.dbconnect());
-
-
+            MySqlConnection db_connect = new MySqlConnection(dbconn.dbconnect());
             db_connect.Open();
-
-            cmd = new MySqlCommand(Queries.SearchDuplicate(searchEmployeeID),
-                                   db_connect);
-            object j = cmd.ExecuteReader();
-            duplicate = Convert.ToInt32(j);
-            Console.WriteLine("Duplicate: " + duplicate);
+            MySqlCommand cmd = new MySqlCommand(Queries.SearchDuplicate(searchEmployeeID),db_connect);
+            result = (Int32)cmd.ExecuteScalar();
+            bool duplicate = (result == 1 ? true : false ); // returned false after 1235
             db_connect.Close();
             return duplicate;
         }
 
         public static string AnyValuesAreNotValid(string employeeID, string firstName, string middleName, string lastName, string addressUnitNum, string addressBrgy, string addressCity, string employeePosition, string employeeDepartment, string employeeCompany)
-
         {
-
             if ((employeeID.Length == 0) ||
                   (firstName.Length == 0) ||
                   (lastName.Length == 0) ||

@@ -71,7 +71,7 @@ namespace EmployeeListExam
         private void SaveButton_Click(object sender, EventArgs e)
         {
 
-                if (DataValidation.CheckEmployeeIDExist(employeeID.Text) > 1)
+                if (DataValidation.CheckEmployeeIDExist(employeeID.Text))
                 {
                     MessageBox.Show("Employee ID already exist. ", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     employeeID.Clear();
@@ -126,7 +126,7 @@ namespace EmployeeListExam
             cmd.Parameters.Clear();
 
 
-            if (DataValidation.CheckEmployeeIDExist(employeeID.Text) > 1)
+            if (DataValidation.CheckEmployeeIDExist(employeeID.Text))
             {
                 MessageBox.Show("Employee ID already exist. ", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 employeeID.Clear();
@@ -259,7 +259,6 @@ namespace EmployeeListExam
                                                                      dataRead["employeeDateLeft"]);
             }
         }
-
         private void SAVETODATABASE()
         {
 
@@ -284,9 +283,5 @@ namespace EmployeeListExam
 
             i = cmd.ExecuteNonQuery();
         }
-
-    }
-
-
-    
-    }
+    }    
+ }
