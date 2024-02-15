@@ -25,7 +25,7 @@
         }
 
         public static string DeleteQuery()
-        {
+        { 
             const string delete = "DELETE From`db_curd` WHERE `EmployeeID`=@EmployeeID";
             return delete;
         }
