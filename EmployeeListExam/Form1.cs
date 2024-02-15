@@ -30,14 +30,9 @@ namespace EmployeeListExam
       
         private void LoadRecord()
         {
-            try
-            {
-                db_connect.Open();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Warning: " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            
+            db_connect.Open();
+           
             employeeRecordTable.Rows.Clear();
             cmd = new MySqlCommand(Queries.SelectQuery(), db_connect);
 
@@ -76,7 +71,7 @@ namespace EmployeeListExam
         private void SaveButton_Click(object sender, EventArgs e)
         {
 
-                if (DataValidation.CheckEmployeeIDExist(employeeID.Text) == 1)
+                if (DataValidation.CheckEmployeeIDExist(employeeID.Text) > 1)
                 {
                     MessageBox.Show("Employee ID already exist. ", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     employeeID.Clear();
