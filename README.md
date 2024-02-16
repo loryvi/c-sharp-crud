@@ -20,7 +20,7 @@
 
 A CRUD made of  of a C# .Net Forms.
 
-[Video Demo]
+[![](https://markdown-videos-api.jorgenkh.no/youtube/7klfCln-6H4)](https://youtu.be/7klfCln-6H4)
 
 ### Data
 ** Data with * are mandatory. Numbers inside () are Maximum Length accepted. 
@@ -53,7 +53,7 @@ A CRUD made of  of a C# .Net Forms.
 
 
 ### Screenshot
-![](images/UserInterface.png)
+![](images/UI.png)
 A screenshot of the user interface when ran. 
 
 ![](images/mysql.png)
@@ -64,50 +64,74 @@ A screenshot of the connected database from MySQL
 ### Create
 
 - add input data to database
-```   db_connect.Open();
-                    cmd = new MySqlCommand(query.insertQuery(), db_connect);
-                    cmd.Parameters.Clear();
+```
+private void SaveButton_Click(object sender, EventArgs e)
+{
 
-                    SAVETODATABASE();
+        if (DataValidation.CheckEmployeeIDExist(employeeID.Text))
+        {
+            MessageBox.Show("Employee ID already exist. ", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            employeeID.Clear();
+            return;
+        }
+        else if ((DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
+                                                 addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
+                                                 employeePosition.Text, employeeDepartment.Text, employeeCompany.Text)) != "")
+        {
 
-                    if (i > 0)
-                    {
+            MessageBox.Show(DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
+                                                 addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
+                                                 employeePosition.Text, employeeDepartment.Text, employeeCompany.Text), "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
+        else
+        {
+            db_connect.Open();
+            cmd = new MySqlCommand(Queries.InsertQuery(), db_connect);
+            cmd.Parameters.Clear();
 
-                        MessageBox.Show("Record Save Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Record Save Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    }
+            SAVETODATABASE();
 
-                    db_connect.Close();
-                    LoadRecord();
-                    clearForm();
+            if (i > 0)
+            {
+
+                MessageBox.Show("Record Save Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Record Save Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            db_connect.Close();
+            LoadRecord();
+            ClearForm();
+        }
+  /*  
+    catch (Exception ex)
+    {
+        MessageBox.Show("Warning: " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+    }*/
+}
+
 ```
 
 
 ### Read
 
 ```
- //Loads the data from database mySql.
-         private void LoadRecord()
-        {   try
-            {
-                db_connect.Open();
-                employeeRecordTable.Rows.Clear();
-                cmd = new MySqlCommand(query.selectQuery(), db_connect);
+  private void LoadRecord()
+ {
+     db_connect.Open();
+    
+     employeeRecordTable.Rows.Clear();
+     cmd = new MySqlCommand(Queries.SelectQuery(), db_connect);
 
-                dataRead = cmd.ExecuteReader();
-                DATAREAD();
+     dataRead = cmd.ExecuteReader();
+     DATAREAD();
 
-                dataRead.Close();
-                db_connect.Close();
-            }
-            catch (InvalidOperationException ex)
-            {
-                MessageBox.Show("Warning: " + ex.Message, "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+     dataRead.Close();
+     db_connect.Close();
+ }
 ```
 
 ### Update 
@@ -115,49 +139,77 @@ A screenshot of the connected database from MySQL
 ** Restriction: EmployeeID cannot change.
 
 ```//cannot edit EmployeeID
-                db_connect.Open();
-                cmd = new MySqlCommand(query.updateQuery(), db_connect);
-                SAVETODATABASE();
+private void EditButton_Click(object sender, EventArgs e)
+{
+    EditButton.Enabled = true;
 
-                if (i > 0)
-                {
-                    MessageBox.Show("Record Update Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Record Update Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
+    cmd.Parameters.Clear();
 
-                db_connect.Close();
-                LoadRecord();
-                clearForm();
+
+   
+    if ((DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
+                                                addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
+                                                employeePosition.Text, employeeDepartment.Text, employeeCompany.Text)) != "")
+    {
+
+        MessageBox.Show(DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
+                                             addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
+                                             employeePosition.Text, employeeDepartment.Text, employeeCompany.Text), "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        return;
+    }
+    else
+    {
+
+        db_connect.Open();
+        cmd = new MySqlCommand(Queries.UpdateQuery(), db_connect);
+        SAVETODATABASE();
+
+        if (i > 0)
+        {
+            MessageBox.Show("Record Update Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        else
+        {
+            MessageBox.Show("Record Update Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        db_connect.Close();
+        LoadRecord();
+        ClearForm();
+    }
+
+}
 ```
 
 ### Delete 
 
 ```
-            db_connect.Open();
-            cmd = new MySqlCommand(query.deleteQuery(), db_connect);
+  private void DeleteButton_Click(object sender, EventArgs e)
+  {
+
+      db_connect.Open();
+      cmd = new MySqlCommand(Queries.DeleteQuery(), db_connect);
+      cmd.Parameters.Clear();
+      cmd.Parameters.AddWithValue("@EmployeeID", employeeID.Text); //get EmployeeIDText - input and run to query
+                                                                       //delete if employeeID match   
+
+      i = cmd.ExecuteNonQuery(); // execute mysqlcommand. checks if 'Column count match value count at row 1'
+
+      if (i > 0)
+      {
+          MessageBox.Show("Record Delete Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      }
+      else
+      {
+          MessageBox.Show("Record Delete Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+      }
+
+      db_connect.Close();
+      LoadRecord();
+      ClearForm();
 
 
-            cmd.Parameters.Clear();
-
-            cmd.Parameters.AddWithValue("@EmployeeID", EmployeeIDText.Text); //EmployeeIDText - input
-
-            i = cmd.ExecuteNonQuery(); // execute mysqlcommand. checks if 'Column count match value count at row 1'
-
-            if (i > 0)
-            {
-                MessageBox.Show("Record Delete Success!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Record Delete Failed!", "Employee Record", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-
-            db_connect.Close();
-            LoadRecord();
-            clearForm();
+  }
 ```
 
 ### Data Validation
