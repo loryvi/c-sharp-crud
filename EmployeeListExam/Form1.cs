@@ -126,13 +126,8 @@ namespace EmployeeListExam
             cmd.Parameters.Clear();
 
 
-            if (DataValidation.CheckEmployeeIDExist(employeeID.Text))
-            {
-                MessageBox.Show("Employee ID already exist. ", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                employeeID.Clear();
-                return;
-            }
-            else if ((DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
+           
+            if ((DataValidation.AnyValuesAreNotValid(employeeID.Text, firstName.Text, middleName.Text, lastName.Text,
                                                         addressUnitNum.Text, addressBrgy.Text, addressCity.Text,
                                                         employeePosition.Text, employeeDepartment.Text, employeeCompany.Text)) != "")
             {
