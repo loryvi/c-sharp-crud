@@ -44,10 +44,6 @@
                  "or employeeDateLeft like '%" + searchtext + "%'";
             return search;
         }        
-        public static string SearchDuplicate (string EmpID)
-        {
-            string search = "SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END FROM `db_curd` WHERE EmployeeID = '"+ EmpID +"'";
-            return search;
-        }
+        
     }
 }

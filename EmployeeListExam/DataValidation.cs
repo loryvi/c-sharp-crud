@@ -6,13 +6,15 @@ namespace EmployeeListExam
 {
      class DataValidation
     {
-
+        private static string searchDuplicate = "SELECT CASE WHEN COUNT(EmployeeID) > 0 THEN 1 ELSE 0 END FROM `db_curd` WHERE EmployeeID=@EmpID";
+        
         public static bool CheckEmployeeIDExist(string searchEmployeeID){
             int result;
             Dbconnection dbconn = new Dbconnection();
             MySqlConnection db_connect = new MySqlConnection(dbconn.dbconnect());
             db_connect.Open();
-            MySqlCommand cmd = new MySqlCommand(Queries.SearchDuplicate(searchEmployeeID),db_connect);
+            MySqlCommand cmd = new MySqlCommand(searchDuplicate,db_connect);
+            cmd.Parameters.AddWithValue("@EmpID", searchEmployeeID);
             result = (Int32)cmd.ExecuteScalar();
             bool duplicate = (result == 1 ? true : false ); // returned false after 1235
             db_connect.Close();
